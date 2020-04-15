@@ -19,7 +19,7 @@ public class FibonnacciShould {
             "9,34"
     })
 
-    public void check_fibonacci_serie(int position, int valueExpected){
+    public void given_a_position_then_Fibonacci_calculate_the_expected_value(int position, int valueExpected){
         assertEquals(valueExpected, Fibonacci.calculateSerie(position));
     }
 
