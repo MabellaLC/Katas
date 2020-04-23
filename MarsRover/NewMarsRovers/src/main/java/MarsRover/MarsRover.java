@@ -15,10 +15,7 @@ public class MarsRover {
         if (commandsSequence.equals("")) {
             return;
         }
-        int displacement = -1;
-        if (commandsSequence.equals("f")) {
-            displacement = 1;
-        }
+        int displacement = getDisplacement(commandsSequence);
         if (direction.equals("N")) {
             coordinates = coordinates.add(new Coordinates(0, displacement));
         }else if (direction.equals("E")){
@@ -28,9 +25,14 @@ public class MarsRover {
         }else {
             coordinates = coordinates.add(new Coordinates(-displacement, 0));
         }
+    }
 
-
-
+    private int getDisplacement(String commandsSequence) {
+        int displacement = -1;
+        if (commandsSequence.equals("f")) {
+            displacement = 1;
+        }
+        return displacement;
     }
 
 
