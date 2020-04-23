@@ -10,6 +10,10 @@ public class Coordinates {
         this.y = y;
     }
 
+    public Coordinates add(Coordinates others) {
+        return new Coordinates(x + others.x, y + others.y);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -30,17 +34,5 @@ public class Coordinates {
                 "x=" + x +
                 ", y=" + y +
                 '}';
-    }
-
-    public int x() {
-        return x;
-    }
-
-    public int y() {
-        return y;
-    }
-
-    public Coordinates add(Coordinates others) {
-        return new Coordinates(x + others.x, y + others.y);
     }
 }
