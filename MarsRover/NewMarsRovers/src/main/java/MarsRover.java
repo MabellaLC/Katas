@@ -1,15 +1,16 @@
 import java.util.Objects;
 
 public class MarsRover {
-    private int x;
-    private int y;
     private final String direction;
+    private Coordinates coordinates;
 
     public MarsRover(int x, int y, String direction) {
-
-        this.x = x;
-        this.y = y;
         this.direction = direction;
+        this.coordinates = new Coordinates(x, y);
+    }
+
+    private void setCoordinates(int x, int y){
+           this.coordinates = new Coordinates(x, y);
     }
 
     public void receive(String commandsSequence) {
@@ -17,14 +18,14 @@ public class MarsRover {
             return;
         }
         if (direction.equals("N")) {
-            y += 1;
+            setCoordinates(coordinates.x(),coordinates.y() + 1);
         }
         else if (direction.equals("E")) {
-            x += 1;
+            setCoordinates(coordinates.x() + 1, coordinates.y());
         }else if (direction.equals("S")){
-            y -= 1;
+            setCoordinates(coordinates.x(), coordinates.y() - 1);;
         }else {
-            x -= 1;
+            setCoordinates(coordinates.x() - 1, coordinates.y());
         }
 
     }
@@ -34,13 +35,22 @@ public class MarsRover {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MarsRover marsRover = (MarsRover) o;
-        return x == marsRover.x &&
-                y == marsRover.y &&
+        return coordinates.x() == marsRover.coordinates.x() &&
+                coordinates.y() == marsRover.coordinates.y() &&
                 Objects.equals(direction, marsRover.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y, direction);
+        return Objects.hash(coordinates.x(), coordinates.y(), direction);
+    }
+
+    @Override
+    public String toString() {
+        return "MarsRover{" +
+                "x=" + coordinates.x() +
+                ", y=" + coordinates.y() +
+                ", direction=" + direction +
+                '}';
     }
 }
