@@ -39,4 +39,12 @@ public class MarsRoverTest {
 
         assertEquals(marsRover, new MarsRover(5, 2, "S"));
     }
+    @Test
+    public void moving_forward_when_facing_west(){
+        MarsRover marsRover = new MarsRover(5,3, "W");
+
+        marsRover.receive("f");
+
+        assertEquals(marsRover, new MarsRover(4, 3, "W"));
+    }
 }
