@@ -1,7 +1,7 @@
 import java.util.Objects;
 
 public class MarsRover {
-    private final int x;
+    private int x;
     private int y;
     private final String direction;
 
@@ -16,7 +16,12 @@ public class MarsRover {
         if (commandsSequence.equals("")){
             return;
         }
-        y += 1;
+        if (direction.equals("N")){
+            y += 1;
+        }else {
+            x += 1;
+        }
+
     }
 
     @Override
