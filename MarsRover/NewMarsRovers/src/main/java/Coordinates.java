@@ -39,4 +39,8 @@ public class Coordinates {
     public int y() {
         return y;
     }
+
+    public Coordinates add(Coordinates others) {
+        return new Coordinates(x + others.x, y + others.y);
+    }
 }

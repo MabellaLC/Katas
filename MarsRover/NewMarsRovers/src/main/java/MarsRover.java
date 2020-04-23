@@ -14,7 +14,7 @@ public class MarsRover {
             return;
         }
         if (direction.equals("N")) {
-            this.coordinates = new Coordinates(coordinates.x(), coordinates.y() + 1);
+            this.coordinates = coordinates.add(new Coordinates(0, 1));
         }
         else if (direction.equals("E")) {
             this.coordinates = new Coordinates(coordinates.x() + 1, coordinates.y());
