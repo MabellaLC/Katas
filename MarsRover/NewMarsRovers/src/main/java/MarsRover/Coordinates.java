@@ -1,3 +1,5 @@
+package MarsRover;
+
 import java.util.Objects;
 
 public class Coordinates {
@@ -30,7 +32,7 @@ public class Coordinates {
 
     @Override
     public String toString() {
-        return "Coordinates{" +
+        return "MarsRover.Coordinates{" +
                 "x=" + x +
                 ", y=" + y +
                 '}';

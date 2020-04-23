@@ -1,3 +1,5 @@
+package MarsRover;
+
 import java.util.Objects;
 
 public class MarsRover {
@@ -13,16 +15,19 @@ public class MarsRover {
         if (commandsSequence.equals("")) {
             return;
         }
-        if (direction.equals("N")) {
-            this.coordinates = coordinates.add(new Coordinates(0, 1));
-        }
-        else if (direction.equals("E")) {
-            this.coordinates = coordinates.add(new Coordinates(1, 0));
-        }else if (direction.equals("S")){
-            this.coordinates = coordinates.add(new Coordinates(0, -1));
-            ;
+        if (commandsSequence.equals("f")) {
+            if (direction.equals("N")) {
+                this.coordinates = coordinates.add(new Coordinates(0, 1));
+            } else if (direction.equals("E")) {
+                this.coordinates = coordinates.add(new Coordinates(1, 0));
+            } else if (direction.equals("S")) {
+                this.coordinates = coordinates.add(new Coordinates(0, -1));
+                ;
+            } else {
+                this.coordinates = coordinates.add(new Coordinates(-1, 0));
+            }
         }else {
-            this.coordinates = coordinates.add(new Coordinates(-1, 0));
+            coordinates = coordinates.add(new Coordinates(0, -1));
         }
 
     }
@@ -44,7 +49,7 @@ public class MarsRover {
 
     @Override
     public String toString() {
-        return "MarsRover{" +
+        return "MarsRover.MarsRover{" +
                 "direction='" + direction + '\'' +
                 ", coordinates=" + coordinates +
                 '}';

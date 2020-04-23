@@ -1,6 +1,9 @@
+package MarsRoversTests;
 
+import MarsRover.MarsRover;
 import org.junit.jupiter.api.Test;
 
+import static MarsRoversTests.MarsRoverHelpersTest.aRoverAt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MarsRoverTest {
@@ -10,11 +13,7 @@ public class MarsRoverTest {
 
         marsRover.receive("");
 
-        assertEquals(marsRover, new MarsRover(1,3, "N"));
-    }
-
-    private MarsRover aRoverAt(int x, int y, String direction){
-        return new MarsRover(x, y, direction);
+        assertEquals(marsRover, aRoverAt(1,3, "N"));
     }
 
 }
