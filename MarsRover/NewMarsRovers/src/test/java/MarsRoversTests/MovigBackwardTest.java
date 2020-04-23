@@ -33,4 +33,14 @@ public class MovigBackwardTest {
 
         assertEquals(marsRover, aRoverAt(1,6, "S"));
     }
+
+    @Test
+    public void when_facing_west(){
+        MarsRover marsRover = aRoverAt(1, 5, "W");
+
+        marsRover.receive("b");
+
+        assertEquals(marsRover, aRoverAt(2,5, "W"));
+    }
+
 }

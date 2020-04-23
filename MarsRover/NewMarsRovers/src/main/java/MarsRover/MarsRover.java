@@ -31,8 +31,10 @@ public class MarsRover {
                 coordinates = coordinates.add(new Coordinates(0, -1));
             }else if (direction.equals("E")){
                 coordinates = coordinates.add(new Coordinates(-1 ,0));
-            }else {
+            }else if (direction.equals("S")){
                 coordinates = coordinates.add(new Coordinates(0, 1));
+            }else {
+                coordinates = coordinates.add(new Coordinates(1, 0));
             }
         }
 
