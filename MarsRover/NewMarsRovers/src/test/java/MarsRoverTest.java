@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MarsRoverTest {
     @Test
     public void not_moving_when_receiving_empty_command_sequence(){
-        MarsRover marsRover = new MarsRover(1,3, "N");
+        MarsRover marsRover = aRoverAt(1,3, "N");
 
         marsRover.receive("");
 
@@ -15,7 +15,7 @@ public class MarsRoverTest {
 
     @Test
     public void moving_forward_when_facing_north(){
-        MarsRover marsRover = new MarsRover(3,6, "N");
+        MarsRover marsRover = aRoverAt(3,6, "N");
 
         marsRover.receive("f");
 
@@ -24,7 +24,7 @@ public class MarsRoverTest {
 
     @Test
     public void moving_forward_when_facing_east(){
-        MarsRover marsRover = new MarsRover(1,3, "E");
+        MarsRover marsRover = aRoverAt(1,3, "E");
 
         marsRover.receive("f");
 
@@ -33,7 +33,7 @@ public class MarsRoverTest {
 
     @Test
     public void moving_forward_when_facing_south(){
-        MarsRover marsRover = new MarsRover(5,3, "S");
+        MarsRover marsRover = aRoverAt(5,3, "S");
 
         marsRover.receive("f");
 
@@ -41,10 +41,14 @@ public class MarsRoverTest {
     }
     @Test
     public void moving_forward_when_facing_west(){
-        MarsRover marsRover = new MarsRover(5,3, "W");
+        MarsRover marsRover = aRoverAt(5,3, "W");
 
         marsRover.receive("f");
 
         assertEquals(marsRover, new MarsRover(4, 3, "W"));
+    }
+
+    private MarsRover aRoverAt(int x, int y, String direction){
+        return new MarsRover(x, y, direction);
     }
 }
