@@ -13,13 +13,16 @@ public class MarsRover {
     }
 
     public void receive(String commandsSequence) {
-        if (commandsSequence.equals("")){
+        if (commandsSequence.equals("")) {
             return;
         }
-        if (direction.equals("N")){
+        if (direction.equals("N")) {
             y += 1;
-        }else {
+        }
+        else if (direction.equals("E")) {
             x += 1;
+        } else {
+            y -= 1;
         }
 
     }

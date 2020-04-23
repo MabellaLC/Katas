@@ -21,6 +21,7 @@ public class MarsRoverTest {
 
         assertEquals(marsRover, new MarsRover(3,7, "N"));
     }
+
     @Test
     public void moving_forward_when_facing_east(){
         MarsRover marsRover = new MarsRover(1,3, "E");
@@ -28,5 +29,14 @@ public class MarsRoverTest {
         marsRover.receive("f");
 
         assertEquals(marsRover, new MarsRover(2,3, "E"));
+    }
+
+    @Test
+    public void moving_forward_when_facing_south(){
+        MarsRover marsRover = new MarsRover(5,3, "S");
+
+        marsRover.receive("f");
+
+        assertEquals(marsRover, new MarsRover(5, 2, "S"));
     }
 }
