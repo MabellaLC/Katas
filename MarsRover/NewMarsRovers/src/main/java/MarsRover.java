@@ -2,7 +2,7 @@ import java.util.Objects;
 
 public class MarsRover {
     private final int x;
-    private final int y;
+    private int y;
     private final String direction;
 
     public MarsRover(int x, int y, String direction) {
@@ -13,7 +13,10 @@ public class MarsRover {
     }
 
     public void receive(String commandsSequence) {
-
+        if (commandsSequence.equals("")){
+            return;
+        }
+        y += 1;
     }
 
     @Override
