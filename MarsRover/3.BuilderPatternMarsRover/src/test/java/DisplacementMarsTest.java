@@ -12,16 +12,12 @@ public class DisplacementMarsTest {
         assertEquals(marsRoverBuilder().withCoordinates(2,3).withOrientation("N").build(), marsRover.move("f"));
     }
 
-
     @Test
     public void moves_backward_when_pointing_north(){
         MarsRoverApp marsRover = marsRoverBuilder().withCoordinates(2,2).withOrientation("N").build();
 
-
         assertEquals(marsRoverBuilder().withCoordinates(2,1).withOrientation("N").build(), marsRover.move("b"));
     }
-
-
 
     @Test
     public void moves_forward_when_pointing_est(){
@@ -40,7 +36,6 @@ public class DisplacementMarsTest {
     @Test
     public void moves_forward_when_pointing_south(){
         MarsRoverApp marsRover = marsRoverBuilder().withCoordinates(2,2).withOrientation("S").build();
-
 
         assertEquals(marsRoverBuilder().withCoordinates(2,1).withOrientation("S").build(), marsRover.move("f"));
     }
@@ -65,6 +60,4 @@ public class DisplacementMarsTest {
 
         assertEquals(marsRoverBuilder().withCoordinates(3,2).withOrientation("W").build(), marsRover.move("b"));
     }
-
-
 }

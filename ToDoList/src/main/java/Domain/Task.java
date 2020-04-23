@@ -9,7 +9,7 @@ public class Task {
     private TaskName task;
     private String dueDate;
     private String status;  //implementar status
-    public boolean isComplete = false;
+    private boolean isComplete = false;
 
     public Task(IDtask ID, TaskName task, String dueDate) {
         this.id = ID;
@@ -17,10 +17,16 @@ public class Task {
         this.dueDate = dueDate;
     }
 
+    public boolean completeTask() {
 
+        return isComplete = true;
+    }
 
-    public void completeTask() {
-       isComplete = true;
+    public Task taskCompleted() {
+        if (isComplete == true){
+            return new Task(id, task, dueDate);
+        }
+        throw new UnsupportedOperationException("boolean es false");
     }
 
     public IDtask getID() {

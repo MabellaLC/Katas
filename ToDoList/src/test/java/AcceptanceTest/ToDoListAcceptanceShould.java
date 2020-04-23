@@ -3,6 +3,7 @@ package AcceptanceTest;
 import Domain.*;
 import Domain.ValueObjects.IDtask;
 import Domain.ValueObjects.TaskName;
+import Infraestructure.InMemoryTaskRepository;
 import org.junit.jupiter.api.Test;
 
 
@@ -12,7 +13,7 @@ public class ToDoListAcceptanceShould {
     @Test
     public void test(){
         ConsoleApp console = mock(ConsoleApp.class);
-        TaskRepository taskRepository = mock(TaskRepository.class);
+        TaskRepository taskRepository = new InMemoryTaskRepository();
         ToDoListApp toDoList = new ToDoListApp(taskRepository, console);
 
         IDtask taskIncom = new IDtask(1);

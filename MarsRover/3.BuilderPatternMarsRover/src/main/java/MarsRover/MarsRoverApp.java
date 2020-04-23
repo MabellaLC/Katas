@@ -1,6 +1,6 @@
 package MarsRover;
 
-import MarsRover.CommandPattern.ICommands;
+import MarsRover.CommandPattern.Commands;
 
 import java.util.List;
 
@@ -18,13 +18,13 @@ public class MarsRoverApp {
        return marsRover.updateMarsRover();
     }
 
-    private void execute(List<ICommands> iCommands){
-        for (ICommands icommand: iCommands) {
-            marsRover = icommand.execute(marsRover);
+    private void execute(List<Commands> commands){
+        for (Commands command: commands) {
+            marsRover = command.execute(marsRover);
         }
     }
 
-    private List<ICommands> createCommand(String command){
+    private List<Commands> createCommand(String command){
         return invoker.createCommands(command);
     }
 

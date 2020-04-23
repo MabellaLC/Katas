@@ -15,10 +15,10 @@ public class MarsRoverReceiver {
     }
 
     public MarsRoverReceiver forward(){
-        if (orientation.equals("N") ){
+        if (orientation.equals("N")){
             return new MarsRoverReceiver(xcoordinate, ycoordinate + 1, orientation);
         }
-         if(orientation.equals("E")) {
+        if (orientation.equals("E")) {
              return new MarsRoverReceiver(xcoordinate + 1, ycoordinate, orientation);
         }
         if(orientation.equals("S")) {
@@ -31,17 +31,17 @@ public class MarsRoverReceiver {
     }
 
     public MarsRoverReceiver right() {
-        if (orientation.equals("N") ){
+        if (orientation.equals("N")){
             return new MarsRoverReceiver(xcoordinate, ycoordinate, orientation = "E");
         }
         if(orientation.equals("E")){
-            return new MarsRoverReceiver(xcoordinate, ycoordinate, "S");
+            return new MarsRoverReceiver(xcoordinate, ycoordinate, orientation = "S");
         }
         if(orientation.equals("S")){
-            return new MarsRoverReceiver(xcoordinate, ycoordinate, "W");
+            return new MarsRoverReceiver(xcoordinate, ycoordinate, orientation = "W");
         }
         if(orientation.equals("W")) {
-            return new MarsRoverReceiver(xcoordinate, ycoordinate, "N");
+            return new MarsRoverReceiver(xcoordinate, ycoordinate, orientation = "N");
         }
         return new MarsRoverReceiver(xcoordinate,ycoordinate,orientation);
     }
@@ -56,13 +56,14 @@ public class MarsRoverReceiver {
         if (orientation.equals("S")) {
             return new MarsRoverReceiver(xcoordinate, ycoordinate + 1, orientation);
         }
-        if (orientation.equals("W")) {
+        if (orientation.equals("W") ){
             return new MarsRoverReceiver(xcoordinate + 1, ycoordinate, orientation);
         }
         return new MarsRoverReceiver(xcoordinate,ycoordinate,orientation);
     }
+
     public MarsRoverReceiver left() {
-        if (orientation.equals("N") ){
+        if (orientation.equals("N")){
             return new MarsRoverReceiver(xcoordinate, ycoordinate, orientation = "W");
         }
         if (orientation.equals("E")) {

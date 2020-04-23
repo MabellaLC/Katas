@@ -32,41 +32,27 @@ public class ToDoListApp {
     }
 
     private void printTaskForIncomplete() {
-        for (Task task: taskRepository.getListIcompleteTask()) {
+        /*for (Task task: taskRepository.getListIcompleteTask()) {
             consoleApp.printLine(task.toString());
-        }
+        }*/
     }
 
     //service class
     public void addTask(Task thingTodo) {
+
         taskRepository.addTask(thingTodo);
     }
 
     //service class
-    public void completeTask(IDtask id){
+    public Task completeTask(IDtask id){
         for (Task task: taskRepository.getList()) {
             if (task.getID() == id){
                 task.completeTask();
+                return task.taskCompleted();
             }
         }
+        throw new UnsupportedOperationException("no complete task");
     }
 
-/*
-    public void executeAction(String command){
-        execute(parseCommand(command));
-    }
 
-    public void execute(ICommand icommand){
-        taskRepository = icommand.execute(taskRepository);
-    }
-
-    private ICommand parseCommand(String command){
-        if (command.equals("All")) {
-            return new All();
-        }
-        if (command.equals("Incomplete")) {
-            return new Incomplete();
-        }
-        return new UnknownCommand();
-    }*/
 }

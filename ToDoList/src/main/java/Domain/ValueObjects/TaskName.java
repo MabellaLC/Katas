@@ -15,10 +15,10 @@ public class TaskName {
         if (task.length() < 5){
             throw new TaskFormat("Task format: more than 5 chars");
         }
-        else if (task.length() > 20){
+        if (task.length() > 20){
             throw new TaskFormat("Task format: less than 20 chars");
         }
-        else if (Pattern.matches("^[a-zA-Z]*$", task)){
+        if (Pattern.matches("^[a-zA-Z]*$", task)){
             throw new TaskFormat("Task format: only alphabetical");
         }
 

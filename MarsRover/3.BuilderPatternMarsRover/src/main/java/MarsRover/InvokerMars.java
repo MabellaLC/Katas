@@ -7,8 +7,8 @@ import java.util.List;
 
 public class InvokerMars {
 
-    public List<ICommands> createCommands(String command) {
-        List<ICommands> iCommandsList = new ArrayList<>();
+    public List<Commands> createCommands(String command) {
+        List<Commands> iCommandsList = new ArrayList<>();
         for (String letterCommand : splitCommand(command)){
             iCommandsList.add(parseCommand(letterCommand));
         }
@@ -19,7 +19,7 @@ public class InvokerMars {
         return command.split("");
     }
 
-    public ICommands parseCommand(String command) {
+    public Commands parseCommand(String command) {
         if (command.equals("f") ){
             return new Fordware();
         }

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import static MarsRover.BuilderPattern.MarsRoverBuilder.marsRoverBuilder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TurningMarsTest {
+public class RotateMarsTest {
 
     @Test
     public void moves_left_when_pointing_north(){

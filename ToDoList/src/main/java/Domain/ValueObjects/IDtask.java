@@ -6,6 +6,7 @@ public class IDtask {
     private int IDtask;
 
     public IDtask(int IDtask) {
+
         this.IDtask = IDtask;
     }
 
