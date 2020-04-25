@@ -15,7 +15,10 @@ public class MarsRover {
         if (commandsSequence.equals("")) {
             return;
         }
-        applyCommand(commandsSequence);
+        for (int i=0; i < commandsSequence.length(); i++){
+            String commandCode = commandsSequence.substring(i, i+1);
+            applyCommand(commandCode);
+        }
     }
 
     private void applyCommand(String commandCode) {
