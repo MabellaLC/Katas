@@ -15,7 +15,11 @@ public class MarsRover {
         if (commandsSequence.equals("")) {
             return;
         }
-        move(commandsSequence);
+        if (commandsSequence.equals("r")){
+            direction = Direction.EAST;
+        }else {
+            move(commandsSequence);
+        }
     }
 
     private void move(String commandsSequence) {
