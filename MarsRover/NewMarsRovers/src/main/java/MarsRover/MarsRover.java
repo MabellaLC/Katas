@@ -15,10 +15,11 @@ public class MarsRover {
         if (commandsSequence.equals("")) {
             return;
         }
-        if (commandsSequence.equals("r")){
+        if (commandsSequence.equals("r")) {
             direction = direction.rotateRight();
-
-        }else {
+        } else if (commandsSequence.equals("l")) {
+            direction = direction.rotateLeft();
+        } else {
             move(commandsSequence);
         }
     }

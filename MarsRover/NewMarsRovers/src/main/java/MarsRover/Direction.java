@@ -54,6 +54,9 @@ public enum Direction {
 
 //when is an enum, this function will be an abstraction(like a parent)
     public abstract Coordinates move(Coordinates coordinates, int displacement);
-
     public abstract Direction rotateRight();
+
+    public Direction rotateLeft() {
+        return WEST;
+    }
 }
