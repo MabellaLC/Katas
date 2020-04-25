@@ -1,9 +1,13 @@
 package MarsRover;
 
 public enum Direction {
-    NORTH;
+    NORTH, SOUTH;
 
     public static Direction pointingTo(String direction) {
-        return NORTH;
+        if (direction.equals("N")){
+
+            return NORTH;
+        }
+        return SOUTH;
     }
 }
