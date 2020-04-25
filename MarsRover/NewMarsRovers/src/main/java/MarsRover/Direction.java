@@ -6,20 +6,37 @@ public enum Direction {
         public Coordinates move(Coordinates coordinates, int displacement){
             return coordinates.add(new Coordinates(0, displacement));
         }
+        @Override
+        public Direction rotateRight(){
+            return Direction.EAST;
+        }
+
     }, SOUTH{
         @Override
         public Coordinates move(Coordinates coordinates, int displacement){
             return coordinates.add(new Coordinates(0, -displacement));
+        }
+        @Override
+        public Direction rotateRight(){
+            return Direction.WEST;
         }
     }, EAST{
         @Override
         public Coordinates move(Coordinates coordinates, int displacement){
             return coordinates.add(new Coordinates(displacement ,0));
         }
+        @Override
+        public Direction rotateRight(){
+            return Direction.SOUTH;
+        }
     }, WEST{
         @Override
         public Coordinates move(Coordinates coordinates, int displacement){
             return coordinates.add(new Coordinates(-displacement, 0));
+        }
+        @Override
+        public Direction rotateRight(){
+            return Direction.NORTH;
         }
     };
 
@@ -37,4 +54,6 @@ public enum Direction {
 
 //when is an enum, this function will be an abstraction(like a parent)
     public abstract Coordinates move(Coordinates coordinates, int displacement);
+
+    public abstract Direction rotateRight();
 }

@@ -16,15 +16,8 @@ public class MarsRover {
             return;
         }
         if (commandsSequence.equals("r")){
-            if (direction.equals(Direction.NORTH)){
-                direction = Direction.EAST;
-            }else if (direction.equals(Direction.EAST)){
-                direction = Direction.SOUTH;
-            }else if (direction.equals(Direction.SOUTH)){
-                direction = Direction.WEST;
-            }else {
-                direction = Direction.NORTH;
-            }
+            direction = direction.rotateRight();
+
         }else {
             move(commandsSequence);
         }
