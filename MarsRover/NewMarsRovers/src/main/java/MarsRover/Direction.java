@@ -8,7 +8,7 @@ public enum Direction {
         }
         @Override
         public Direction rotateRight(){
-            return Direction.EAST;
+            return EAST;
         }
         @Override
         public Direction rotateLeft(){
@@ -22,7 +22,7 @@ public enum Direction {
         }
         @Override
         public Direction rotateRight(){
-            return Direction.WEST;
+            return WEST;
         }
         @Override
         public Direction rotateLeft(){
@@ -35,7 +35,7 @@ public enum Direction {
         }
         @Override
         public Direction rotateRight(){
-            return Direction.SOUTH;
+            return SOUTH;
         }
         @Override
         public Direction rotateLeft(){
@@ -48,7 +48,7 @@ public enum Direction {
         }
         @Override
         public Direction rotateRight(){
-            return Direction.NORTH;
+            return NORTH;
         }
         @Override
         public Direction rotateLeft(){
