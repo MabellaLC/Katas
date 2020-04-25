@@ -3,12 +3,14 @@ package MarsRover;
 import java.util.Objects;
 
 public class MarsRover {
-    private Coordinates coordinates;
-    private Direction direction;
+    private Vector vector;
 
     public MarsRover(int x, int y, String directionCode) {
-        this.coordinates = new Coordinates(x, y);
-        this.direction = Direction.pointingTo(directionCode);
+        this.vector = new Vector(new Coordinates(x, y), Direction.pointingTo(directionCode));
+    }
+
+    private void setVector(Vector vector){
+        this.vector = vector;
     }
 
     public void receive(String commandsSequence) {
@@ -40,16 +42,16 @@ public class MarsRover {
     }
 
     private void rotateLeft() {
-        direction = direction.rotateLeft();
+        setVector(new Vector(vector.origin(), vector.direction().rotateLeft()));
     }
 
     private void rotateRight() {
-        direction = direction.rotateRight();
+        setVector(new Vector(vector.origin(), vector.direction().rotateRight()));
     }
 
     private void move(String commandCode) {
         int displacement = getDisplacement(commandCode);
-        coordinates = direction.move(coordinates, displacement);
+        setVector(new Vector(vector.direction().move(vector.origin(), displacement), vector.direction()));
     }
 
     private int getDisplacement(String commandCode) {
@@ -67,22 +69,18 @@ public class MarsRover {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MarsRover marsRover = (MarsRover) o;
-        return Objects.equals(direction, marsRover.direction) &&
-                Objects.equals(coordinates, marsRover.coordinates);
+        return Objects.equals(vector, marsRover.vector);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(direction, coordinates);
+        return Objects.hash(vector);
     }
 
     @Override
     public String toString() {
-        return "MarsRover.MarsRover{" +
-                "direction='" + direction + '\'' +
-                ", coordinates=" + coordinates +
+        return "MarsRover{" +
+                "vector=" + vector +
                 '}';
     }
-
-
 }
