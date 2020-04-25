@@ -19,4 +19,10 @@ public class DirectionsCreationTest {
 
         assertEquals(direction, Direction.SOUTH);
     }
+    @Test
+    public void direction_pointing_East(){
+        Direction direction = Direction.pointingTo("E");
+
+        assertEquals(direction, Direction.EAST);
+    }
 }
