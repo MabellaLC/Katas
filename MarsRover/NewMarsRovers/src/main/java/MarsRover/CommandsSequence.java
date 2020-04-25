@@ -15,12 +15,9 @@ public class CommandsSequence {
     }
 
     public Vector apply(Vector vector){
-
         for (Command commandIndex : commands){
             vector = commandIndex.apply(vector);
         }
         return vector;
     }
-
-
 }
