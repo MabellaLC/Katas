@@ -30,9 +30,10 @@ public class MarsRover {
     }
 
     private int getDisplacement(String commandsSequence) {
-        int displacement = -1;
+        final int DISPLACEMENT_LENGHT = 1;
+        int displacement = -DISPLACEMENT_LENGHT;
         if (commandsSequence.equals("f")) {
-            displacement = 1;
+            displacement = DISPLACEMENT_LENGHT;
         }
         return displacement;
     }
