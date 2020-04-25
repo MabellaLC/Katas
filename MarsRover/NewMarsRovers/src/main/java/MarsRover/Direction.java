@@ -10,6 +10,10 @@ public enum Direction {
         public Direction rotateRight(){
             return Direction.EAST;
         }
+        @Override
+        public Direction rotateLeft(){
+            return WEST;
+        }
 
     }, SOUTH{
         @Override
@@ -57,6 +61,6 @@ public enum Direction {
     public abstract Direction rotateRight();
 
     public Direction rotateLeft() {
-        return WEST;
+        return NORTH;
     }
 }
