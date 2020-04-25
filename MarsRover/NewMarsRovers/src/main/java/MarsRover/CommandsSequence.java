@@ -10,14 +10,7 @@ public class CommandsSequence {
 
         for (int i = 0; i < commandsCodes.length(); i++) {
             String commandCode = commandsCodes.substring(i, i + 1);
-            if (isRightRotation(commandCode)) {
-                commands.add(new RightRotation());
-            } else if (isLeftRotation(commandCode)) {
-                commands.add(new LeftRotation());
-            } else {
-                int displacement = getDisplacement(commandCode);
-                commands.add(new Movement(displacement));
-            }
+            commands.add(CommandCodeInterpreter.interprete(commandCode));
         }
     }
 
@@ -29,20 +22,5 @@ public class CommandsSequence {
         return vector;
     }
 
-    private boolean isLeftRotation(String commandCode) {
-        return commandCode.equals("l");
-    }
 
-    private boolean isRightRotation(String commandCode) {
-        return commandCode.equals("r");
-    }
-
-    private int getDisplacement(String commandCode) {
-        final int DISPLACEMENT_LENGHT = 1;
-        int displacement = -DISPLACEMENT_LENGHT;
-        if (commandCode.equals("f")) {
-            displacement = DISPLACEMENT_LENGHT;
-        }
-        return displacement;
-    }
 }
