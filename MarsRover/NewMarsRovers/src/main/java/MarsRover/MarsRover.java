@@ -3,12 +3,12 @@ package MarsRover;
 import java.util.Objects;
 
 public class MarsRover {
-    private final String direction;
     private Coordinates coordinates;
+    private Direction direction;
 
-    public MarsRover(int x, int y, String direction) {
-        this.direction = direction;
+    public MarsRover(int x, int y, String directionCode) {
         this.coordinates = new Coordinates(x, y);
+        this.direction = Direction.pointingTo(directionCode);
     }
 
     public void receive(String commandsSequence) {
@@ -21,11 +21,11 @@ public class MarsRover {
     private void move(String commandsSequence) {
         int displacement = getDisplacement(commandsSequence);
 
-        if (direction.equals("N")) {
+        if (direction.equals(Direction.NORTH)) {
             coordinates = coordinates.add(new Coordinates(0, displacement));
-        }else if (direction.equals("E")){
+        }else if (direction.equals(Direction.EAST)){
             coordinates = coordinates.add(new Coordinates(displacement ,0));
-        }else if (direction.equals("S")){
+        }else if (direction.equals(Direction.SOUTH)){
             coordinates = coordinates.add(new Coordinates(0, -displacement));
         }else {
             coordinates = coordinates.add(new Coordinates(-displacement, 0));
@@ -62,4 +62,6 @@ public class MarsRover {
                 ", coordinates=" + coordinates +
                 '}';
     }
+
+
 }
