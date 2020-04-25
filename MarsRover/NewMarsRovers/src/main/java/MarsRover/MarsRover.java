@@ -24,7 +24,7 @@ public class MarsRover {
             this.vector = new LeftRotation().apply(vector);
         } else {
             int displacement = getDisplacement(commandCode);
-            this.vector = vector.move(displacement);
+            this.vector = new Movement(displacement).apply(vector);
         }
     }
 
