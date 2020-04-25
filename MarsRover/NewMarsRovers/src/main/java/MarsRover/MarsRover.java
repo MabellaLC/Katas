@@ -21,7 +21,7 @@ public class MarsRover {
         if (isRightRotation(commandCode)) {
             this.vector = new RightRotation().apply(vector);
         } else if (isLeftRotation(commandCode)) {
-            this.vector = vector.rotateLeft();
+            this.vector = new LeftRotation().apply(vector);
         } else {
             int displacement = getDisplacement(commandCode);
             this.vector = vector.move(displacement);
