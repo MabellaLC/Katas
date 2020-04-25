@@ -12,14 +12,6 @@ public class Vector {
         this.direction = direction;
     }
 
-    public Coordinates origin() {
-        return coordinatesOriginal;
-    }
-
-    public Direction direction() {
-        return direction;
-    }
-
     public Vector move(int displacement) {
         return new Vector(direction.move(coordinatesOriginal, displacement), direction);
     }
