@@ -37,6 +37,6 @@ public class RotatingLeftTest {
 
         marsRover.receive("l");
 
-        assertEquals(aRoverAt(0,0, "N"), marsRover);
+        assertEquals(aRoverAt(0,0, "S"), marsRover);
     }
 }
