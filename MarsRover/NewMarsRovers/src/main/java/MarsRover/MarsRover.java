@@ -18,25 +18,25 @@ public class MarsRover {
         applyCommand(commandsSequence);
     }
 
-    private void applyCommand(String commandsSequence) {
-        if (commandsSequence.equals("r")) {
+    private void applyCommand(String commandCode) {
+        if (commandCode.equals("r")) {
             direction = direction.rotateRight();
-        } else if (commandsSequence.equals("l")) {
+        } else if (commandCode.equals("l")) {
             direction = direction.rotateLeft();
         } else {
-            move(commandsSequence);
+            move(commandCode);
         }
     }
 
-    private void move(String commandsSequence) {
-        int displacement = getDisplacement(commandsSequence);
+    private void move(String commandCode) {
+        int displacement = getDisplacement(commandCode);
         coordinates = direction.move(coordinates, displacement);
     }
 
-    private int getDisplacement(String commandsSequence) {
+    private int getDisplacement(String commandCode) {
         final int DISPLACEMENT_LENGHT = 1;
         int displacement = -DISPLACEMENT_LENGHT;
-        if (commandsSequence.equals("f")) {
+        if (commandCode.equals("f")) {
             displacement = DISPLACEMENT_LENGHT;
         }
         return displacement;
