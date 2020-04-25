@@ -19,11 +19,12 @@ public class MarsRover {
 
     private void applyCommand(String commandCode) {
         if (isRightRotation(commandCode)) {
-            rotateRight();
+            this.vector = vector.rotateRight();
         } else if (isLeftRotation(commandCode)) {
-            rotateLeft();
+            this.vector = vector.rotateLeft();
         } else {
-            move(commandCode);
+            int displacement = getDisplacement(commandCode);
+            this.vector = vector.move(displacement);
         }
     }
 
@@ -34,20 +35,6 @@ public class MarsRover {
     private boolean isRightRotation(String commandCode) {
         return commandCode.equals("r");
     }
-
-    private void rotateLeft() {
-        this.vector = vector.rotateLeft();
-    }
-
-    private void rotateRight() {
-        this.vector = vector.rotateRight();
-    }
-
-    private void move(String commandCode) {
-        int displacement = getDisplacement(commandCode);
-        this.vector = vector.move(displacement);
-    }
-
 
 
     private int getDisplacement(String commandCode) {
