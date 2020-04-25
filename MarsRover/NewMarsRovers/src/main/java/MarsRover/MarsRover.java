@@ -1,5 +1,7 @@
 package MarsRover;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class MarsRover {
@@ -10,17 +12,22 @@ public class MarsRover {
     }
 
     public void receive(String commandsSequence) {
+        List<Command> commands = new ArrayList<>();
 
-        for (int i=0; i < commandsSequence.length(); i++){
-            String commandCode = commandsSequence.substring(i, i+1);
+        for (int i=0; i < commandsSequence.length(); i++) {
+            String commandCode = commandsSequence.substring(i, i + 1);
             if (isRightRotation(commandCode)) {
-                this.vector = new RightRotation().apply(vector);
+                commands.add(new RightRotation());
             } else if (isLeftRotation(commandCode)) {
-                this.vector = new LeftRotation().apply(vector);
+                commands.add(new LeftRotation());
             } else {
                 int displacement = getDisplacement(commandCode);
-                this.vector = new Movement(displacement).apply(vector);
+                commands.add(new Movement(displacement));
             }
+        }
+
+        for (Command commandIndex : commands){
+            vector = commandIndex.apply(vector);
         }
     }
 

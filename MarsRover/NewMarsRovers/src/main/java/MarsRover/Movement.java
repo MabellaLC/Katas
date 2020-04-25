@@ -1,6 +1,6 @@
 package MarsRover;
 
-public class Movement {
+public class Movement implements Command {
     private int displacement;
 
     public Movement(int displacement) {
