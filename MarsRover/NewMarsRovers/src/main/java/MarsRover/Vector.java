@@ -28,6 +28,10 @@ public class Vector {
         return new Vector(coordinatesOriginal, direction.rotateRight());
     }
 
+    public Vector rotateLeft() {
+        return new Vector(coordinatesOriginal, direction.rotateLeft());
+    }
+
     @Override
     public String toString() {
         return "Vector{" +

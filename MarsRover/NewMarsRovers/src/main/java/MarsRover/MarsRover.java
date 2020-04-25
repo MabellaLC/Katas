@@ -38,7 +38,7 @@ public class MarsRover {
     }
 
     private void rotateLeft() {
-        this.vector = new Vector(vector.origin(), vector.direction().rotateLeft());
+        this.vector = vector.rotateLeft();
     }
 
     private void rotateRight() {
