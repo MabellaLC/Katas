@@ -20,6 +20,10 @@ public class Vector {
         return direction;
     }
 
+    public Vector move(int displacement) {
+        return new Vector(direction.move(coordinatesOriginal, displacement), direction);
+    }
+
     @Override
     public String toString() {
         return "Vector{" +

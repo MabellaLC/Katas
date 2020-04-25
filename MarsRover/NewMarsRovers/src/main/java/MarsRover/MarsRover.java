@@ -51,8 +51,10 @@ public class MarsRover {
 
     private void move(String commandCode) {
         int displacement = getDisplacement(commandCode);
-        setVector(new Vector(vector.direction().move(vector.origin(), displacement), vector.direction()));
+        this.vector = vector.move(displacement);
     }
+
+
 
     private int getDisplacement(String commandCode) {
         final int DISPLACEMENT_LENGHT = 1;
