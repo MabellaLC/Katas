@@ -23,4 +23,12 @@ public class RotatingLeftTest {
 
         assertEquals(aRoverAt(0,0, "N"), marsRover);
     }
+    @Test
+    public void when_facing_south(){
+        MarsRover marsRover = aRoverAt(0,0, "S");
+
+        marsRover.receive("l");
+
+        assertEquals(aRoverAt(0,0, "E"), marsRover);
+    }
 }
