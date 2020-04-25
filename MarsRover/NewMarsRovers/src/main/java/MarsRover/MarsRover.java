@@ -13,18 +13,14 @@ public class MarsRover {
 
         for (int i=0; i < commandsSequence.length(); i++){
             String commandCode = commandsSequence.substring(i, i+1);
-            applyCommand(commandCode);
-        }
-    }
-
-    private void applyCommand(String commandCode) {
-        if (isRightRotation(commandCode)) {
-            this.vector = new RightRotation().apply(vector);
-        } else if (isLeftRotation(commandCode)) {
-            this.vector = new LeftRotation().apply(vector);
-        } else {
-            int displacement = getDisplacement(commandCode);
-            this.vector = new Movement(displacement).apply(vector);
+            if (isRightRotation(commandCode)) {
+                this.vector = new RightRotation().apply(vector);
+            } else if (isLeftRotation(commandCode)) {
+                this.vector = new LeftRotation().apply(vector);
+            } else {
+                int displacement = getDisplacement(commandCode);
+                this.vector = new Movement(displacement).apply(vector);
+            }
         }
     }
 
