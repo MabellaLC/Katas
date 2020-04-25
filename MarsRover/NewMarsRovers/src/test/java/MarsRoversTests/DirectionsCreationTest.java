@@ -25,4 +25,10 @@ public class DirectionsCreationTest {
 
         assertEquals(direction, Direction.EAST);
     }
+    @Test
+    public void direction_pointing_West(){
+        Direction direction = Direction.pointingTo("W");
+
+        assertEquals(direction, Direction.WEST);
+    }
 }
