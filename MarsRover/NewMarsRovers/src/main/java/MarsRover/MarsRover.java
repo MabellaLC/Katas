@@ -9,10 +9,6 @@ public class MarsRover {
         this.vector = new Vector(new Coordinates(x, y), Direction.pointingTo(directionCode));
     }
 
-    private void setVector(Vector vector){
-        this.vector = vector;
-    }
-
     public void receive(String commandsSequence) {
         if (commandsSequence.equals("")) {
             return;
@@ -42,11 +38,11 @@ public class MarsRover {
     }
 
     private void rotateLeft() {
-        setVector(new Vector(vector.origin(), vector.direction().rotateLeft()));
+        this.vector = new Vector(vector.origin(), vector.direction().rotateLeft());
     }
 
     private void rotateRight() {
-        setVector(new Vector(vector.origin(), vector.direction().rotateRight()));
+        this.vector = vector.rotateRight();
     }
 
     private void move(String commandCode) {

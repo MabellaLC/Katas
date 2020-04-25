@@ -24,6 +24,10 @@ public class Vector {
         return new Vector(direction.move(coordinatesOriginal, displacement), direction);
     }
 
+    public Vector rotateRight() {
+        return new Vector(coordinatesOriginal, direction.rotateRight());
+    }
+
     @Override
     public String toString() {
         return "Vector{" +
