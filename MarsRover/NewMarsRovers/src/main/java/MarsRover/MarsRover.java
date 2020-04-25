@@ -20,16 +20,7 @@ public class MarsRover {
 
     private void move(String commandsSequence) {
         int displacement = getDisplacement(commandsSequence);
-
-        if (direction.equals(Direction.NORTH)) {
-            coordinates = coordinates.add(new Coordinates(0, displacement));
-        }else if (direction.equals(Direction.EAST)){
-            coordinates = coordinates.add(new Coordinates(displacement ,0));
-        }else if (direction.equals(Direction.SOUTH)){
-            coordinates = coordinates.add(new Coordinates(0, -displacement));
-        }else {
-            coordinates = coordinates.add(new Coordinates(-displacement, 0));
-        }
+        coordinates = direction.move(coordinates, displacement);
     }
 
     private int getDisplacement(String commandsSequence) {
