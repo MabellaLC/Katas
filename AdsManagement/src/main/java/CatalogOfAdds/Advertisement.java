@@ -1,3 +1,7 @@
+package CatalogOfAdds;
+
+import CatalogOfAdds.Exceptions.AdvertisementFormat;
+
 import java.util.Objects;
 
 public class Advertisement {
@@ -8,9 +12,16 @@ public class Advertisement {
 
     public Advertisement(int iD, String title, String description, String date) {
         this.iD = iD;
-        this.title = title;
+        this.title = checkTitleFormat(title);
         this.description = description;
         this.date = date;
+    }
+
+    private String checkTitleFormat(String title){
+        if (title.length() > 50){
+            throw new AdvertisementFormat("Title can't be longer than 50 characters");
+        }
+        return title;
     }
 
     @Override
