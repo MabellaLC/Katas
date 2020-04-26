@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DirectionsCreationTest {
+public class MarsRoverDirectionsCreation {
     @Test
     public void direction_pointing_north(){
         Direction direction = Direction.pointingTo("N");

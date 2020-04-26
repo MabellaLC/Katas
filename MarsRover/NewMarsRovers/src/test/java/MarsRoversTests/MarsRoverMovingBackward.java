@@ -4,10 +4,10 @@ import MarsRover.MarsRover;
 import org.junit.jupiter.api.Test;
 
 import static MarsRoversTests.MarsRoverBuilder.aRover;
-import static MarsRoversTests.MarsRoverHelpersTest.roverLocatedAt;
+import static MarsRoversTests.helpers.MarsRoverHelpers.roverLocatedAt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MovingBackwardTest {
+public class MarsRoverMovingBackward {
     @Test
     public void when_facing_north(){
         MarsRover marsRover = aRover().at(1,5).facing("N").build();

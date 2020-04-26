@@ -4,10 +4,10 @@ import MarsRover.MarsRover;
 import org.junit.jupiter.api.Test;
 
 import static MarsRoversTests.MarsRoverBuilder.aRover;
-import static MarsRoversTests.MarsRoverHelpersTest.roverLocatedAt;
+import static MarsRoversTests.helpers.MarsRoverHelpers.roverLocatedAt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ReceivingCommandSequenceTest {
+public class MarsRoverReceivingSequenceOfCommand {
     @Test
     public void not_moving_when_receiving_empty_command_sequence(){
         MarsRover marsRover = aRover().at(1,3).facing("N").build();

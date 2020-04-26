@@ -1,11 +1,13 @@
+package MarsRoversTests;
+
 import MarsRover.MarsRover;
 import org.junit.jupiter.api.Test;
 
 import static MarsRoversTests.MarsRoverBuilder.aRover;
-import static MarsRoversTests.MarsRoverHelpersTest.roverLocatedAt;
+import static MarsRoversTests.helpers.MarsRoverHelpers.roverLocatedAt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MovingFordwareTest {
+public class MarsRoverMovingFordward {
     @Test
     public void _when_facing_north(){
         MarsRover marsRover = aRover().at(3,6).facing("N").build();
