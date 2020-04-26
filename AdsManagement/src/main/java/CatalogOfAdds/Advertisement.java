@@ -1,25 +1,19 @@
 package CatalogOfAdds;
 
-import CatalogOfAdds.ValueObjects.Date;
-import CatalogOfAdds.ValueObjects.Description;
-import CatalogOfAdds.ValueObjects.IdAdd;
-import CatalogOfAdds.ValueObjects.Title;
+import CatalogOfAdds.ValueObjects.*;
 
 import java.util.Objects;
 
 
 public class Advertisement {
     private IdAdd iD;
-    private Description description;
     private Date date;
-    private Title title;
+    private BodyAdd bodyAdd;
 
     public Advertisement(int iD, String title, String description, String date) {
         this.iD = new IdAdd(iD);
-        this.title = new Title(title);
-        this.description = new Description(description);
         this.date = new Date(date);
-
+        this.bodyAdd = new BodyAdd(title,description);
     }
 
 
@@ -27,9 +21,8 @@ public class Advertisement {
     public String toString() {
         return "Advertisement{" +
                 "iD=" + iD +
-                ", description=" + description +
                 ", date=" + date +
-                ", title=" + title +
+                ", bodyAdd=" + bodyAdd +
                 '}';
     }
 
@@ -39,13 +32,12 @@ public class Advertisement {
         if (o == null || getClass() != o.getClass()) return false;
         Advertisement that = (Advertisement) o;
         return Objects.equals(iD, that.iD) &&
-                Objects.equals(description, that.description) &&
                 Objects.equals(date, that.date) &&
-                Objects.equals(title, that.title);
+                Objects.equals(bodyAdd, that.bodyAdd);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(iD, description, date, title);
+        return Objects.hash(iD, date, bodyAdd);
     }
 }

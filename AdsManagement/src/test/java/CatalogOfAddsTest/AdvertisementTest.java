@@ -12,7 +12,6 @@ public class AdvertisementTest {
 
     @Test
     public void when_creating_an_advertisement(){
-
         Advertisement advertisement = advertisementWith(1,"Promoción", "Batas exclusivas", "26/04/2020");
 
         assertEquals(new Advertisement(1,"Promoción", "Batas exclusivas", "26/04/2020"), advertisement);
@@ -25,5 +24,12 @@ public class AdvertisementTest {
                                                                         "señoras en toda la gama de pijamas",
                                                                         "Batas exclusivas",
                                                                         "26/04/2020"));
+    }
+
+    @Test
+    public void when_creating_an_advertisement_with_same_title_and_description(){
+        assertThrows(AdvertisementFormat.class, () -> advertisementWith(1,"Promoción",
+                "Promoción",
+                "26/04/2020"));
     }
 }

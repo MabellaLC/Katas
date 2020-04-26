@@ -4,13 +4,17 @@ import CatalogOfAdds.Exceptions.AdvertisementFormat;
 
 import java.util.Objects;
 
-public class Title {
-    private String title;
+public class BodyAdd {
+    private final String title;
+    private final String description;
 
-    public Title(String title) {
+    public BodyAdd(String title, String description) {
+        if (title.equals(description)){
+            throw new AdvertisementFormat("Title and description can't be equals");
+        }
         this.title = checkFormatTitle(title);
+        this.description = description;
     }
-
     private String checkFormatTitle(String title){
         if(title.length() > 50){
             throw new AdvertisementFormat("Title can be longer than fifty characters");
@@ -20,8 +24,9 @@ public class Title {
 
     @Override
     public String toString() {
-        return "Title{" +
+        return "BodyAdd{" +
                 "title='" + title + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 
@@ -29,12 +34,13 @@ public class Title {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Title title1 = (Title) o;
-        return Objects.equals(title, title1.title);
+        BodyAdd bodyAdd = (BodyAdd) o;
+        return Objects.equals(title, bodyAdd.title) &&
+                Objects.equals(description, bodyAdd.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title);
+        return Objects.hash(title, description);
     }
 }
