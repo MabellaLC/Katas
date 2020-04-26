@@ -11,9 +11,7 @@ public class Date {
 
     @Override
     public String toString() {
-        return "Date{" +
-                "date='" + date + '\'' +
-                '}';
+        return "Date: " + date;
     }
 
     @Override

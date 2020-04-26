@@ -3,9 +3,7 @@ package CatalogOfAdds.Domain;
 import CatalogOfAdds.Domain.ValueObjects.BodyAdd;
 import CatalogOfAdds.Domain.ValueObjects.Date;
 import CatalogOfAdds.Domain.ValueObjects.IdAdd;
-
 import java.util.Objects;
-
 
 public class Advertisement {
     private IdAdd iD;
@@ -19,14 +17,7 @@ public class Advertisement {
     }
 
 
-    @Override
-    public String toString() {
-        return "Advertisement{" +
-                "iD=" + iD +
-                ", date=" + date +
-                ", bodyAdd=" + bodyAdd +
-                '}';
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -41,5 +32,16 @@ public class Advertisement {
     @Override
     public int hashCode() {
         return Objects.hash(iD, date, bodyAdd);
+    }
+
+    public IdAdd getiD() {
+        return iD;
+    }
+
+    @Override
+    public String toString() {
+        return iD.toString() + "\n" +
+                bodyAdd.toString() + "\n" +
+                date.toString();
     }
 }

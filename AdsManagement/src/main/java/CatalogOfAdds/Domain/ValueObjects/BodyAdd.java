@@ -24,10 +24,8 @@ public class BodyAdd {
 
     @Override
     public String toString() {
-        return "BodyAdd{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return  "Title: " + title + "\n" +
+                "Description: " + description;
     }
 
     @Override
