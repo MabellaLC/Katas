@@ -1,4 +1,6 @@
-package MarsRover;
+package MarsRover.commands;
+
+import MarsRover.Command;
 
 public class CommandCodeInterpreter {
     public static Command interprete(String commandCode){

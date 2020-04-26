@@ -1,6 +1,9 @@
-package MarsRover;
+package MarsRover.commands;
 
-public class Movement implements Command {
+import MarsRover.Command;
+import MarsRover.Vector;
+
+class Movement implements Command {
     private int displacement;
 
     public Movement(int displacement) {

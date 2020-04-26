@@ -1,5 +1,7 @@
 package MarsRover;
 
+import MarsRover.commands.CommandCodeInterpreter;
+
 import java.util.ArrayList;
 import java.util.List;
 
