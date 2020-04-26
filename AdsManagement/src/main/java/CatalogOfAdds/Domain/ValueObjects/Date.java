@@ -1,4 +1,4 @@
-package CatalogOfAdds.ValueObjects;
+package CatalogOfAdds.Domain.ValueObjects;
 
 import java.util.Objects;
 

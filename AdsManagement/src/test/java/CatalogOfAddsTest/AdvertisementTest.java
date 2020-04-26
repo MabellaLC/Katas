@@ -1,7 +1,7 @@
 package CatalogOfAddsTest;
 
-import CatalogOfAdds.Advertisement;
-import CatalogOfAdds.Exceptions.AdvertisementFormat;
+import CatalogOfAdds.Domain.Advertisement;
+import CatalogOfAdds.Domain.Exceptions.AdvertisementFormat;
 import org.junit.jupiter.api.Test;
 
 import static CatalogOfAddsTest.AddHelper.advertisementWith;

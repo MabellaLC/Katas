@@ -1,6 +1,8 @@
-package CatalogOfAdds;
+package CatalogOfAdds.Domain;
 
-import CatalogOfAdds.ValueObjects.*;
+import CatalogOfAdds.Domain.ValueObjects.BodyAdd;
+import CatalogOfAdds.Domain.ValueObjects.Date;
+import CatalogOfAdds.Domain.ValueObjects.IdAdd;
 
 import java.util.Objects;
 

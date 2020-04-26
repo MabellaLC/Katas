@@ -1,6 +1,6 @@
-package CatalogOfAdds.ValueObjects;
+package CatalogOfAdds.Domain.ValueObjects;
 
-import CatalogOfAdds.Exceptions.AdvertisementFormat;
+import CatalogOfAdds.Domain.Exceptions.AdvertisementFormat;
 
 import java.util.Objects;
 

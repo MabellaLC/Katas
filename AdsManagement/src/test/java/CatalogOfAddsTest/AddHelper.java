@@ -1,6 +1,6 @@
 package CatalogOfAddsTest;
 
-import CatalogOfAdds.Advertisement;
+import CatalogOfAdds.Domain.Advertisement;
 
 public class AddHelper {
 
