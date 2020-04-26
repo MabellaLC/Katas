@@ -2,11 +2,13 @@ package CatalogOfAddsTest;
 
 import CatalogOfAdds.Domain.AddManager;
 import CatalogOfAdds.Domain.Advertisement;
+import CatalogOfAdds.Domain.Exceptions.IdAddDoNotExist;
 import CatalogOfAdds.Domain.Printer;
 import CatalogOfAdds.Infraestructure.CatalogRepository;
 import org.junit.jupiter.api.Test;
 
 import static CatalogOfAddsTest.AddHelper.advertisementWith;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class AddManagerTest {
@@ -41,6 +43,14 @@ public class AddManagerTest {
                 "Title: Promoción" + "\n" +
                 "Description: Batas exclusivas" + "\n" +
                 "Date: 26/04/2020");
+    }
+    @Test
+    public void raise_error_when_print_an_advertisement_that_id_do_not_exist() {
+        CatalogRepository catalogRepository = new CatalogRepository();
+        Printer printer = mock(Printer.class);
+        AddManager addManager = new AddManager(catalogRepository, printer);
+
+        assertThrows(IdAddDoNotExist.class, () -> addManager.printAnAdd(2));
     }
 
 
