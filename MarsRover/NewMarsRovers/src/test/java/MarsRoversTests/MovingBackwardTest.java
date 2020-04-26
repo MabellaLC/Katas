@@ -4,7 +4,7 @@ import MarsRover.MarsRover;
 import org.junit.jupiter.api.Test;
 
 import static MarsRoversTests.MarsRoverBuilder.aRover;
-import static MarsRoversTests.MarsRoverHelpersTest.aRoverAt;
+import static MarsRoversTests.MarsRoverHelpersTest.roverLocatedAt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MovingBackwardTest {
@@ -14,7 +14,7 @@ public class MovingBackwardTest {
 
         marsRover.receive("b");
 
-        assertEquals(marsRover, aRoverAt(1,4, "N"));
+        assertEquals(marsRover, roverLocatedAt(1,4, "N"));
     }
 
     @Test
@@ -23,7 +23,7 @@ public class MovingBackwardTest {
 
         marsRover.receive("b");
 
-        assertEquals(marsRover, aRoverAt(0,5, "E"));
+        assertEquals(marsRover, roverLocatedAt(0,5, "E"));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class MovingBackwardTest {
 
         marsRover.receive("b");
 
-        assertEquals(marsRover, aRoverAt(1,6, "S"));
+        assertEquals(marsRover, roverLocatedAt(1,6, "S"));
     }
 
     @Test
@@ -41,6 +41,6 @@ public class MovingBackwardTest {
 
         marsRover.receive("b");
 
-        assertEquals(marsRover, aRoverAt(2,5, "W"));
+        assertEquals(marsRover, roverLocatedAt(2,5, "W"));
     }
 }

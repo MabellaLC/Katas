@@ -4,7 +4,7 @@ import MarsRover.MarsRover;
 import org.junit.jupiter.api.Test;
 
 import static MarsRoversTests.MarsRoverBuilder.aRover;
-import static MarsRoversTests.MarsRoverHelpersTest.aRoverAt;
+import static MarsRoversTests.MarsRoverHelpersTest.roverLocatedAt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReceivingCommandSequenceTest {
@@ -14,7 +14,7 @@ public class ReceivingCommandSequenceTest {
 
         marsRover.receive("");
 
-        assertEquals(aRoverAt(1,3, "N"), marsRover);
+        assertEquals(roverLocatedAt(1,3, "N"), marsRover);
     }
 
     @Test
@@ -23,7 +23,7 @@ public class ReceivingCommandSequenceTest {
 
         marsRover.receive("lflbrf");
 
-        assertEquals(aRoverAt(2,-1, "E"), marsRover);
+        assertEquals(roverLocatedAt(2,-1, "E"), marsRover);
     }
     @Test
     public void receiving_a_sequence_with_an_unknown_command(){
@@ -31,6 +31,6 @@ public class ReceivingCommandSequenceTest {
 
         marsRover.receive("*");
 
-        assertEquals(aRoverAt(0,4,"S"), marsRover);
+        assertEquals(roverLocatedAt(0,4,"S"), marsRover);
     }
 }

@@ -4,7 +4,7 @@ import MarsRover.MarsRover;
 import org.junit.jupiter.api.Test;
 
 import static MarsRoversTests.MarsRoverBuilder.aRover;
-import static MarsRoversTests.MarsRoverHelpersTest.aRoverAt;
+import static MarsRoversTests.MarsRoverHelpersTest.roverLocatedAt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RotatingLeftTest {
@@ -14,7 +14,7 @@ public class RotatingLeftTest {
 
         marsRover.receive("l");
 
-        assertEquals(aRoverAt(0,0, "W"), marsRover);
+        assertEquals(roverLocatedAt(0,0, "W"), marsRover);
     }
     @Test
     public void when_facing_east(){
@@ -22,7 +22,7 @@ public class RotatingLeftTest {
 
         marsRover.receive("l");
 
-        assertEquals(aRoverAt(0,0, "N"), marsRover);
+        assertEquals(roverLocatedAt(0,0, "N"), marsRover);
     }
     @Test
     public void when_facing_south(){
@@ -30,7 +30,7 @@ public class RotatingLeftTest {
 
         marsRover.receive("l");
 
-        assertEquals(aRoverAt(0,0, "E"), marsRover);
+        assertEquals(roverLocatedAt(0,0, "E"), marsRover);
     }
     @Test
     public void when_facing_west(){
@@ -38,6 +38,6 @@ public class RotatingLeftTest {
 
         marsRover.receive("l");
 
-        assertEquals(aRoverAt(0,0, "S"), marsRover);
+        assertEquals(roverLocatedAt(0,0, "S"), marsRover);
     }
 }
