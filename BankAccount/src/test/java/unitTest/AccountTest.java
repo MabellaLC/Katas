@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
 public class AccountTest {
+    private static final int AMOUNT = 500;
     Transactions transactions;
     Printer printer;
     Account account;
@@ -20,16 +21,16 @@ public class AccountTest {
 
     @Test
     public void deposit_an_amount(){
-        account.deposit(500);
+        account.deposit(AMOUNT);
 
-        verify(transactions).record(500);
+        verify(transactions).record(AMOUNT);
     }
 
     @Test
     public void withdraw_an_amount(){
-        account.withdraw(500);
+        account.withdraw(AMOUNT);
 
-        verify(transactions).record(-500);
+        verify(transactions).record(-AMOUNT);
     }
 
     @Test
@@ -41,4 +42,6 @@ public class AccountTest {
 
         verify(printer).printStatement(generatedStatement);
     }
+
+
 }
