@@ -26,8 +26,6 @@ public class AddManager {
     }
 
     public void printListOfAdds(){
-
+        printer.printAnAdd(catalogRepository.printListOfAdds());
     }
-
-
 }

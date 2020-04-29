@@ -12,7 +12,6 @@ public class CatalogRepository {
 
     List<Advertisement> advertisementList = new ArrayList<>();
 
-
     public void addAddToCatalog(Advertisement advertisement) {
         advertisementList.add(advertisement);
     }
@@ -26,7 +25,15 @@ public class CatalogRepository {
         throw new IdAddDoNotExist("Id doesn't exist");
     }
 
-    public void printListOfAdds() {
+    public String printListOfAdds() {
+        for (Advertisement advertisement : advertisementList) {
+            return advertisement.toString();
+        }
+        throw new IdAddDoNotExist("list empty");
+    }
 
+
+    public List<Advertisement> getAddList() {
+        return advertisementList;
     }
 }
