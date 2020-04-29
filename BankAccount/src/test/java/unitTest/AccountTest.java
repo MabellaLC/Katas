@@ -24,4 +24,11 @@ public class AccountTest {
 
         verify(transactions).record(500);
     }
+
+    @Test
+    public void withdraw_an_amount(){
+        account.withdraw(500);
+
+        verify(transactions).record(-500);
+    }
 }
