@@ -22,6 +22,6 @@ public class Account {
     }
 
     public void printStatement() {
-
+        printer.printStatement(transactions.statement());
     }
 }

@@ -31,4 +31,14 @@ public class AccountTest {
 
         verify(transactions).record(-500);
     }
+
+    @Test
+    public void generate_account_transactions_statement_gets_printed(){
+        Statement generatedStatement = new Statement();
+        when(transactions.statement()).thenReturn(generatedStatement);
+
+        account.printStatement();
+
+        verify(printer).printStatement(generatedStatement);
+    }
 }
