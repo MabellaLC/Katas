@@ -7,10 +7,6 @@ import java.util.Objects;
 public class Statement {
     private List<StatementLine> statementLines;
 
-    public Statement() {
-        this(new ArrayList<>());
-    }
-
     public Statement(List<StatementLine> statementLines) {
 
         this.statementLines = statementLines;

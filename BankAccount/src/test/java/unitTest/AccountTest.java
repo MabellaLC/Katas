@@ -4,6 +4,8 @@ import BankAccount.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.mockito.Mockito.*;
 
 public class AccountTest {
@@ -35,7 +37,7 @@ public class AccountTest {
 
     @Test
     public void generate_account_transactions_statement_gets_printed(){
-        Statement generatedStatement = new Statement();
+        Statement generatedStatement = new Statement(new ArrayList <>());
         when(transactions.statement()).thenReturn(generatedStatement);
 
         account.printStatement();
