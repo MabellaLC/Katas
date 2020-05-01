@@ -26,7 +26,7 @@ public class NiceEnglishFormatPrinterTesT {
     @Test
     public void  prints_a_statement_containing_a_debit_line(){
         printer.printStatement(aStatementContaining(
-                new StatementLine(new Date("14-01-2012"), -600, 1000)
+                new StatementLine(new Date("14-04-2012"), -600, 1000)
         ));
 
         verify(console).print("date || credit || debit || balance");

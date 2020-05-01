@@ -18,6 +18,18 @@ public class StatementLine {
         return amount < 0;
     }
 
+    public String day() {
+        return date.day();
+    }
+
+    public String month() {
+        return date.month();
+    }
+
+    public String year() {
+        return date.year();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,6 +53,5 @@ public class StatementLine {
                 ", balance=" + balance +
                 '}';
     }
-
 
 }
