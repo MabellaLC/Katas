@@ -4,10 +4,9 @@ import java.util.Objects;
 
 public class StatementLine {
     private Date date;
-
     private int amount;
-
     private int balance;
+
     public StatementLine(Date date, int amount, int balance) {
 
         this.date = date;
@@ -21,6 +20,10 @@ public class StatementLine {
 
     public int amount() {
         return amount;
+    }
+
+    public int balance() {
+        return balance;
     }
 
     public String day() {
@@ -58,5 +61,4 @@ public class StatementLine {
                 ", balance=" + balance +
                 '}';
     }
-
 }
