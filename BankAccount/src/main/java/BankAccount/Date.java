@@ -9,6 +9,18 @@ public class Date{
         this.date = date;
     }
 
+    public String day() {
+        return date.substring(0, 2);
+    }
+
+    public String month() {
+        return date.substring(3, 5);
+    }
+
+    public String year() {
+        return date.substring(6, 10);
+    }
+
     @Override
     public String toString() {
         return "Date{" +

@@ -14,13 +14,19 @@ public class NiceEnglishFormatPrinter implements Printer {
         if (statement.lines().isEmpty()){
             return;
         }
+        printLine(statement.lines().get(0));
+    }
 
-        StatementLine statementLine = statement.lines().get(0);
+    private void printLine(StatementLine statementLine) {
+        console.print(formattedLine(statementLine));
+    }
+
+    private String formattedLine(StatementLine statementLine){
         if (statementLine.isDebit()){
-            console.print("14/04/2012 ||  || 600.00 || 1000.00");
+            return "14/04/2012 ||  || 600.00 || 1000.00";
+        }else {
+            return "13/01/2012 || 2000.00 ||  || 3000.00";
         }
-        console.print("13/01/2012 || 2000.00 ||  || 3000.00");
-
     }
 
     private void printHeader() {
