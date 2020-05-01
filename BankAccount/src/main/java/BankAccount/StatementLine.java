@@ -14,6 +14,10 @@ public class StatementLine {
         this.balance = balance;
     }
 
+    public boolean isDebit() {
+        return amount < 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

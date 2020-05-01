@@ -32,4 +32,14 @@ public class NiceEnglishFormatPrinterTesT {
         verify(console).print("date || credit || debit || balance");
         verify(console).print("14/04/2012 ||  || 600.00 || 1000.00");
     }
+
+    @Test
+    public void  prints_a_statement_containing_a_credit_line(){
+        printer.printStatement(aStatementContaining(
+                new StatementLine(new Date("13-01-2012"), 2000, 3000)
+        ));
+
+        verify(console).print("date || credit || debit || balance");
+        verify(console).print("13/01/2012 || 2000.00 ||  || 3000.00");
+    }
 }
