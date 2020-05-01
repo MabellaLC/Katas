@@ -1,5 +1,7 @@
 package BankAccount;
 
+import java.util.Map;
+
 public class NiceEnglishFormatPrinter implements Printer {
     private static final String STATEMENT_HEADER = "date || credit || debit || balance";
     private Console console;
@@ -23,10 +25,14 @@ public class NiceEnglishFormatPrinter implements Printer {
 
     private String formattedLine(StatementLine statementLine){
         if (statementLine.isDebit()){
-            return dateOf(statementLine) + " ||  || 600.00 || 1000.00";
+            return dateOf(statementLine) + " ||  || " +amountOf(statementLine) + " || " + "1000.00";
         }else {
-            return dateOf(statementLine) + " || 2000.00 ||  || 3000.00";
+            return dateOf(statementLine) + " || " + amountOf(statementLine) + " ||  || 3000.00";
         }
+    }
+
+    private String amountOf(StatementLine statementLine){
+        return Math.abs(statementLine.amount()) + ".00";
     }
 
     private String dateOf(StatementLine statementLine) {

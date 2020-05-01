@@ -3,10 +3,11 @@ package BankAccount;
 import java.util.Objects;
 
 public class StatementLine {
-    private final Date date;
-    private final int amount;
-    private final int balance;
+    private Date date;
 
+    private int amount;
+
+    private int balance;
     public StatementLine(Date date, int amount, int balance) {
 
         this.date = date;
@@ -16,6 +17,10 @@ public class StatementLine {
 
     public boolean isDebit() {
         return amount < 0;
+    }
+
+    public int amount() {
+        return amount;
     }
 
     public String day() {
