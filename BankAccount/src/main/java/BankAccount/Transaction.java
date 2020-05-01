@@ -3,11 +3,11 @@ package BankAccount;
 import java.util.Objects;
 
 public class Transaction{
-    private final Date calendar;
     private final int amount;
+    private Date date;
 
-    public Transaction(Date calendar, int amount) {
-        this.calendar = calendar;
+    public Transaction(Date date, int amount) {
+        this.date = date;
         this.amount = amount;
     }
 
@@ -17,19 +17,23 @@ public class Transaction{
         if (o == null || getClass() != o.getClass()) return false;
         Transaction that = (Transaction) o;
         return amount == that.amount &&
-                Objects.equals(calendar, that.calendar);
+                Objects.equals(date, that.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(calendar, amount);
+        return Objects.hash(date, amount);
     }
 
     @Override
     public String toString() {
         return "Transaction{" +
-                "calendar=" + calendar +
+                "calendar=" + date +
                 ", amount=" + amount +
                 '}';
+    }
+
+    public StatementLine generateStatementLine(int accumulatedBalance) {
+        return new StatementLine(date, amount, amount + accumulatedBalance);
     }
 }

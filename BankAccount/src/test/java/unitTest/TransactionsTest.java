@@ -37,10 +37,4 @@ public class TransactionsTest {
     protected  Statement aStatementContaining(StatementLine ... statementLine){
         return new Statement(Arrays.asList(statementLine));
     }
-
-    private Statement anEmptyStatement(){
-        return new Statement(new ArrayList<>());
-    }
-
-
 }
