@@ -36,4 +36,8 @@ public class Transaction{
     public StatementLine generateStatementLine(int accumulatedBalance) {
         return new StatementLine(date, amount, amount + accumulatedBalance);
     }
+
+    public int amount() {
+        return amount;
+    }
 }

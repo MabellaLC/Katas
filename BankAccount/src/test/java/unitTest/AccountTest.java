@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+import static helpers.StatementFactory.anyStatement;
 import static org.mockito.Mockito.*;
 
 public class AccountTest {
@@ -37,7 +38,7 @@ public class AccountTest {
 
     @Test
     public void generate_account_transactions_statement_gets_printed(){
-        Statement generatedStatement = new Statement(new ArrayList <>());
+        Statement generatedStatement = anyStatement();
         when(transactions.statement()).thenReturn(generatedStatement);
 
         account.printStatement();

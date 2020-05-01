@@ -12,6 +12,10 @@ public class Statement {
         this.statementLines = statementLines;
     }
 
+    public List<StatementLine> lines() {
+        return new ArrayList<>(statementLines);
+    }
+
     @Override
     public String toString() {
         return "Statement{" +
