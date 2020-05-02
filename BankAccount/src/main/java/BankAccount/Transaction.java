@@ -11,6 +11,14 @@ public class Transaction{
         this.amount = amount;
     }
 
+    public StatementLine generateStatementLine(int accumulatedBalance) {
+        return new StatementLine(date, amount, amount + accumulatedBalance);
+    }
+
+    public int amount() {
+        return amount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,13 +39,5 @@ public class Transaction{
                 "calendar=" + date +
                 ", amount=" + amount +
                 '}';
-    }
-
-    public StatementLine generateStatementLine(int accumulatedBalance) {
-        return new StatementLine(date, amount, amount + accumulatedBalance);
-    }
-
-    public int amount() {
-        return amount;
     }
 }
