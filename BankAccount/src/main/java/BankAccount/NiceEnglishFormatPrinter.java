@@ -1,6 +1,9 @@
 package BankAccount;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class NiceEnglishFormatPrinter implements Printer {
     private static final String STATEMENT_HEADER = "date || credit || debit || balance";
@@ -16,34 +19,41 @@ public class NiceEnglishFormatPrinter implements Printer {
         if (statement.lines().isEmpty()){
             return;
         }
-        printLine(statement.lines().get(0));
+
+        List<StatementLine> reversed = new ArrayList<>(statement.lines());
+        Collections.reverse(reversed);
+        reversed.forEach(this::printLine);
     }
 
     private void printLine(StatementLine statementLine) {
-        console.print(formattedLine(statementLine));
+        console.print(formatLine(statementLine));
     }
 
-    private String formattedLine(StatementLine statementLine){
+    private String formatLine(StatementLine statementLine){
+        return String.format(LineFormat(statementLine),
+                formatDateOf(statementLine),
+                formatAmountOf(statementLine),
+                formatBalanceOf(statementLine));
+
+    }
+
+    private String LineFormat(StatementLine statementLine) {
         if (statementLine.isDebit()){
-            return dateOf(statementLine) + " ||  || " +
-                    amountOf(statementLine) + " || " +
-                    balaceOf(statementLine);
+            return "%s ||  || %s || %s";
         }else {
-            return dateOf(statementLine) + " || " +
-                    amountOf(statementLine) + " ||  || " +
-                    balaceOf(statementLine);
+            return  "%s || %s ||  || %s";
         }
     }
 
-    private String balaceOf(StatementLine statementLine){
-        return String.format("%d.00", Math.abs(statementLine.balance()));
+    private String formatBalanceOf(StatementLine statementLine){
+        return String.format("%d.00", statementLine.balance());
     }
 
-    private String amountOf(StatementLine statementLine){
+    private String formatAmountOf(StatementLine statementLine){
         return String.format("%d.00", Math.abs(statementLine.amount()));
     }
 
-    private String dateOf(StatementLine statementLine) {
+    private String formatDateOf(StatementLine statementLine) {
         return String.format("%s/%s/%s", statementLine.day(), statementLine.month(), statementLine.year());
     }
 

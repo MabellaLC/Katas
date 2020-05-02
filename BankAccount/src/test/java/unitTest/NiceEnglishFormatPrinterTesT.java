@@ -42,4 +42,17 @@ public class NiceEnglishFormatPrinterTesT {
         verify(console).print("date || credit || debit || balance");
         verify(console).print("13/01/2012 || 2000.00 ||  || 3000.00");
     }
+
+    @Test
+    public void  prints_a_statement_containing_a_debit_and_credit_line_in_reverse_oder(){
+        printer.printStatement(aStatementContaining(
+                new StatementLine(new Date("13-01-2012"), 2000, 3000),
+                new StatementLine(new Date("14-04-2012"), -500, 2500)
+        ));
+
+        verify(console).print("date || credit || debit || balance");
+        verify(console).print("14/04/2012 ||  || 500.00 || 2500.00");
+        verify(console).print("13/01/2012 || 2000.00 ||  || 3000.00");
+
+    }
 }
