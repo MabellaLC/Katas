@@ -5,6 +5,7 @@ import BankAccount.StatementLine;
 import BankAccount.Transaction;
 import org.junit.jupiter.api.Test;
 
+import static helpers.StatementLineBuilder.aStatementLine;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TransactionTest {
@@ -15,7 +16,8 @@ public class TransactionTest {
         int transactionAmount = 500;
         Transaction transaction = new Transaction(transactionDate, transactionAmount);
 
-        assertEquals(transaction.generateStatementLine(accumulatedBalance), new StatementLine(transactionDate, transactionAmount, 2500));
+        assertEquals(transaction.generateStatementLine(accumulatedBalance),
+                aStatementLine().from(transactionDate).ofAmount(transactionAmount).andBalance(2500).build());
     }
 
 }

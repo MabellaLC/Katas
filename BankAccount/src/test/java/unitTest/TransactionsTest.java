@@ -1,15 +1,14 @@
 package unitTest;
 
 import BankAccount.*;
+import helpers.StatementLineBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static helpers.StatementFactory.aStatementContaining;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class TransactionsTest {
     Transactions transactions;
@@ -25,8 +24,16 @@ public class TransactionsTest {
     @Test
     public void generates_an_account_statement_containing_all_recorded_transaction(){
         Statement expectedStatement = aStatementContaining(
-                new StatementLine(new Date("10-05-2016"), 500, 500),
-                new StatementLine(new Date("15-05-2016"), -200, 300)
+                StatementLineBuilder.aStatementLine()
+                        .from(new Date("10-05-2016"))
+                        .ofAmount(500)
+                        .andBalance(500)
+                        .build(),
+                StatementLineBuilder.aStatementLine()
+                        .from(new Date("15-05-2016"))
+                        .ofAmount(-200)
+                        .andBalance(300)
+                        .build()
         );
         when(calendar.day()).thenReturn(new Date("10-05-2016"),new Date("15-05-2016"));
 

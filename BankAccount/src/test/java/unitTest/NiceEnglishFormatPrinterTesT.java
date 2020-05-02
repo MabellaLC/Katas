@@ -4,6 +4,7 @@ import BankAccount.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static helpers.StatementFactory.*;
+import static helpers.StatementLineBuilder.aStatementLine;
 import static org.mockito.Mockito.*;
 
 public class NiceEnglishFormatPrinterTesT {
@@ -26,8 +27,7 @@ public class NiceEnglishFormatPrinterTesT {
     @Test
     public void  prints_a_statement_containing_a_debit_line(){
         printer.printStatement(aStatementContaining(
-                new StatementLine(new Date("14-04-2012"), -600, 1000)
-        ));
+                aStatementLine().from(new Date("14-04-2012")).ofAmount(-600).andBalance(1000).build()));
 
         verify(console).print("date || credit || debit || balance");
         verify(console).print("14/04/2012 ||  || 600.00 || 1000.00");
@@ -36,8 +36,8 @@ public class NiceEnglishFormatPrinterTesT {
     @Test
     public void  prints_a_statement_containing_a_credit_line(){
         printer.printStatement(aStatementContaining(
-                new StatementLine(new Date("13-01-2012"), 2000, 3000)
-        ));
+                aStatementLine().from(new Date("13-01-2012")).ofAmount(2000).andBalance(3000).build()));
+
 
         verify(console).print("date || credit || debit || balance");
         verify(console).print("13/01/2012 || 2000.00 ||  || 3000.00");
@@ -46,8 +46,8 @@ public class NiceEnglishFormatPrinterTesT {
     @Test
     public void  prints_a_statement_containing_a_debit_and_credit_line_in_reverse_oder(){
         printer.printStatement(aStatementContaining(
-                new StatementLine(new Date("13-01-2012"), 2000, 3000),
-                new StatementLine(new Date("14-04-2012"), -500, 2500)
+                aStatementLine().from(new Date("13-01-2012")).ofAmount(2000).andBalance(3000).build(),
+                aStatementLine().from(new Date("14-04-2012")).ofAmount(-500).andBalance(2500).build()
         ));
 
         verify(console).print("date || credit || debit || balance");
