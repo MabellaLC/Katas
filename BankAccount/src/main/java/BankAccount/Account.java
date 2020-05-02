@@ -4,11 +4,7 @@ public class Account {
     private Transactions transactions;
     private Printer printer;
 
-    public Account(Calendar calendar, Console console) {
-    }
-
     public Account(Transactions transactions, Printer printer) {
-
         this.transactions = transactions;
         this.printer = printer;
     }

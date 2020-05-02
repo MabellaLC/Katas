@@ -10,7 +10,9 @@ public class PrintingAccountStatementOnConsoleTest {
     public void printing_statement_including_deposit_and_withdrawal(){
         Calendar calendar = mock(Calendar.class);
         Console console = mock(Console.class);
-        Account account = new Account(calendar, console);
+        Account account = new Account(
+                new InMemoryTransactions(calendar),
+                new NiceEnglishFormatPrinter(console));
 
         when(calendar.day()).thenReturn(new Date("10-01-2012"), new Date("13-01-2012"), new Date("14-01-2012") );
 
@@ -21,8 +23,8 @@ public class PrintingAccountStatementOnConsoleTest {
         account.printStatement();
 
         verify(console).print("date || credit || debit || balance");
-        verify(console).print("14-01-2012 ||  || 500 || 2500.00");
-        verify(console).print("13-01-2012 || 2000.00 ||  || 3000.00");
-        verify(console).print("10-01-2012 || 1000.00 ||  || 1000.00");
+        verify(console).print("14/01/2012 ||  || 500.00 || 2500.00");
+        verify(console).print("13/01/2012 || 2000.00 ||  || 3000.00");
+        verify(console).print("10/01/2012 || 1000.00 ||  || 1000.00");
     }
 }
