@@ -1,8 +1,5 @@
 package BankAccount;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class NiceEnglishFormatPrinter implements Printer {
@@ -16,17 +13,13 @@ public class NiceEnglishFormatPrinter implements Printer {
     @Override
     public void printStatement(Statement statement) {
         printHeader();
-        if (statement.lines().isEmpty()){
-            return;
-        }
-
-        List<StatementLine> reversed = new ArrayList<>(statement.lines());
-        Collections.reverse(reversed);
-        reversed.forEach(this::printLine);
+        printLines(statement.linesInReverseOrder());
     }
 
-    private void printLine(StatementLine statementLine) {
-        console.print(formatLine(statementLine));
+    private void printLines(List<StatementLine> reversed) {
+        reversed.stream()
+                .map(this::formatLine)
+                .forEach(line -> console.print(line));
     }
 
     private String formatLine(StatementLine statementLine){

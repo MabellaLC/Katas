@@ -1,6 +1,7 @@
 package BankAccount;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,6 +15,12 @@ public class Statement {
 
     public List<StatementLine> lines() {
         return new ArrayList<>(statementLines);
+    }
+
+    public List<StatementLine> linesInReverseOrder() {
+        List<StatementLine> reversed = new ArrayList<>(statementLines);
+        Collections.reverse(reversed);
+        return reversed;
     }
 
     @Override
