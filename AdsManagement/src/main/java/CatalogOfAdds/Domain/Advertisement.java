@@ -42,6 +42,6 @@ public class Advertisement {
     public String toString() {
         return iD.toString() + "\n" +
                 bodyAdd.toString() + "\n" +
-                date.toString();
+                date.toString() ;
     }
 }

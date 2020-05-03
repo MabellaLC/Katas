@@ -2,15 +2,18 @@ package CatalogOfAddsTest;
 
 import CatalogOfAdds.Domain.AddManager;
 import CatalogOfAdds.Domain.Advertisement;
-import CatalogOfAdds.Domain.Exceptions.IdAddDoNotExist;
 import CatalogOfAdds.Domain.Console;
+import CatalogOfAdds.Domain.Exceptions.IdAddDoNotExist;
 import CatalogOfAdds.Domain.ValueObjects.Date;
 import CatalogOfAdds.Domain.ValueObjects.IdAdd;
 import CatalogOfAdds.Infraestructure.Catalog;
+import CatalogOfAdds.Infraestructure.CatalogRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static helpers.AdvertisementBuilder.anAdvertisement;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class AddManagerTest {
@@ -20,20 +23,19 @@ public class AddManagerTest {
 
     @BeforeEach
     public void setUp() {
-        catalog = mock(Catalog.class);
         console = mock(Console.class);
-        addManager = new AddManager(catalog, console);
-
     }
 
     @Test
     public void add_an_advertisement_to_a_catalog() {
+        catalog = mock(Catalog.class);
+        addManager = new AddManager(catalog, console);
+
         Advertisement advertisement = anAdvertisement()
                 .withID(1)
                 .withTitle("Promoción")
                 .withDescription("Batas exclusivas")
                 .whenDateIs(new Date("26/04/2020")).build();
-
 
         addManager.addAdd(advertisement);
 
@@ -46,13 +48,17 @@ public class AddManagerTest {
 
     @Test
     public void get_an_advertisement_from_catalog_by_id() {
+        catalog = mock(Catalog.class);
+        addManager = new AddManager(catalog, console);
+        Advertisement advertisement = anAdvertisement()
+                .withID(2)
+                .withTitle("Promoción")
+                .withDescription("Batas exclusivas")
+                .whenDateIs(new Date("26/04/2020")).build();
 
-        when(catalog.printAnAdd(new IdAdd(2))).thenReturn("Id: 2"  + "\n" +
-                "Title: Promoción" + "\n" +
-                "Description: Batas exclusivas" + "\n" +
-                "Date: 26/04/2020");
+        when(catalog.filterById(new IdAdd(2))).thenReturn(advertisement.toString());
 
-        addManager.printAnAdd(2);
+        addManager.filterById(2);
 
         verify(console).print("Id: 2"  + "\n" +
                 "Title: Promoción" + "\n" +
@@ -60,46 +66,46 @@ public class AddManagerTest {
                 "Date: 26/04/2020");
     }
 
-    /*@Test
-    public void raise_error_when_printing_an_advertisement_that_id_do_not_exist() {
-//        Advertisement advertisement = advertisementWith(2, "Promoción", "Batas exclusivas", "26/04/2020");
-//        addManager.addAdd(advertisement);
-//        addManager.printAnAdd(2);
-        when(catalog.printAnAdd(new IdAdd(2))).thenReturn("Id: 2"  + "\n" +
-                "Title: Promoción" + "\n" +
-                "Description: Batas exclusivas" + "\n" +
-                "Date: 26/04/2020");
+    @Test
+    public void raise_error_when_filter_id_not_exist() {
+        catalog = new CatalogRepository();
+        addManager = new AddManager(catalog, console);
 
-        assertThrows(IdAddDoNotExist.class, () -> addManager.printAnAdd(3));
-    }*/
+        assertThrows(IdAddDoNotExist.class, () -> addManager.filterById(3));
+    }
 
-//La vaina esta en que mockejo les dos, hauria de fer una class intermitja per rebre una llista
-    /*@Test
-    public void get_a_list_of_advertisement_from_catalog() {
-        CatalogRepository catalogRepository = mock(CatalogRepository.class);
-        Printer printer = mock(Printer.class);
-        AddManager addManager = new AddManager(catalogRepository, printer);
+    @Test
+    public void print_a_list_of_advertisements(){
+        catalog = new CatalogRepository();
+        addManager = new AddManager(catalog, console);
+        Advertisement addOne = anAdvertisement()
+                .withID(1)
+                .withTitle("Promoción de última moda")
+                .withDescription("Batas exclusivas")
+                .whenDateIs(new Date("20/04/2020")).build();
+        Advertisement addTwo =anAdvertisement()
+                .withID(2)
+                .withTitle("Promoción")
+                .withDescription("Bikinis")
+                .whenDateIs(new Date("26/04/2020")).build();
 
-        Advertisement firstAdvertisement = advertisementWith(1, "Promoción", "Batas exclusivas", "26/04/2020");
-        Advertisement secondAdvertisement = advertisementWith(2, "Rebajas", "Bañadores", "26/04/2020");
-
-        List<Advertisement> advertisementList = new ArrayList<>();
-        advertisementList.add(firstAdvertisement);
-        advertisementList.add(secondAdvertisement);
-        when(catalogRepository.getAddList()).thenReturn(advertisementList);
-
+        addManager.addAdd(addOne);
+        addManager.addAdd(addTwo);
         addManager.printListOfAdds();
 
-
-        verify(printer).printAnAdd("Id: 1"  + "\n" +
-                "Title: Promoción" + "\n" +
+        String expectedString = "Id: 1"  + "\n" +
+                "Title: Promoción de última moda" + "\n" +
                 "Description: Batas exclusivas" + "\n" +
-                "Date: 26/04/2020");
-        verify(printer).printAnAdd("Id: 2"  + "\n" +
-                "Title: Rebajas" + "\n" +
-                "Description: Bañadores" + "\n" +
-                "Date: 26/04/2020");
-    }*/
+                "Date: 20/04/2020" + "\n" +
+                "Id: 2"  + "\n" +
+                "Title: Promoción" + "\n" +
+                "Description: Bikinis" + "\n" +
+                "Date: 26/04/2020" +"\n";
+
+
+        verify(console).print(expectedString);
+    }
+
 
     /*@Test
     public void remove_an_advertisement_from_a_catalog() {

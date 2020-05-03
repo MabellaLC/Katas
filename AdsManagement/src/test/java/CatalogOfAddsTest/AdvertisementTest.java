@@ -6,7 +6,6 @@ import CatalogOfAdds.Domain.ValueObjects.Date;
 import org.junit.jupiter.api.Test;
 
 import static helpers.AdvertisementBuilder.anAdvertisement;
-import static helpers.AdvertisementFactory.advertisementWith;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -42,6 +41,6 @@ public class AdvertisementTest {
                                         .withTitle("Promoción")
                                         .withDescription("Promoción")
                                         .whenDateIs(new Date("26/04/2020")).build());
-        
+
     }
 }

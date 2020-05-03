@@ -7,6 +7,6 @@ import CatalogOfAdds.Domain.ValueObjects.IdAdd;
 
 public interface Catalog {
     void addAddToCatalog(Advertisement advertisement);
-    String printAnAdd(IdAdd iD);
-    AdvertsList printListOfAdds();
+    String filterById(IdAdd iD);
+    String printListOfAdds();
 }

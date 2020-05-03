@@ -22,25 +22,28 @@ public class CatalogRepository implements Catalog{
     }
 
     @Override
-    public String printAnAdd(IdAdd iD) {
+    public String filterById(IdAdd iD) {
         //mirar cambiarlo por el stream
         for (Advertisement advertisement: advertisementList) {
             if (advertisement.getiD().equals(iD)){
                 return advertisement.toString();
             }
         }
+
         throw new IdAddDoNotExist("Id doesn't exist");
     }
 
     //public Statement()
     //list statementLine = new array...
     @Override
-    public AdvertsList printListOfAdds() {
-        List<Advertisement> transactionsStrings = new ArrayList<>();
+    public String printListOfAdds() {
+        String format = "";
+        //List<Advertisement> transactionsStrings = new ArrayList<>();
         for (Advertisement advertisement : advertisementList) {
-            transactionsStrings.add(advertisement);
+            format += advertisement.toString() + "\n";
+            //transactionsStrings.add(advertisement);
         }
-       return new AdvertsList(transactionsStrings);
+       return format;
     }
 
 

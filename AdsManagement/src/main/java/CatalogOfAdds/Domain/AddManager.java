@@ -21,12 +21,14 @@ public class AddManager {
 
     }
 
-    public void printAnAdd(int iD){
+    public void filterById(int iD){
         IdAdd idAdd = new IdAdd(iD);
-        console.print(catalog.printAnAdd(idAdd));
+       //catalog.filterById(idAdd);
+        console.print(catalog.filterById(idAdd));
     }
 
     public void printListOfAdds(){
-        catalog.printListOfAdds();
+        console.print(catalog.printListOfAdds());
+        //catalog.printListOfAdds();
     }
 }
