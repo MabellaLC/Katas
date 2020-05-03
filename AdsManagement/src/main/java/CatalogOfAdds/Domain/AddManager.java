@@ -1,19 +1,20 @@
 package CatalogOfAdds.Domain;
 
 import CatalogOfAdds.Domain.ValueObjects.IdAdd;
-import CatalogOfAdds.Infraestructure.CatalogRepository;
+import CatalogOfAdds.Infraestructure.Catalog;
 
 public class AddManager {
-    private CatalogRepository catalogRepository;
-    private Printer printer;
+    private Catalog catalog;
+    private Console printer;
 
-    public AddManager(CatalogRepository catalogRepository, Printer printer) {
-        this.catalogRepository = catalogRepository;
+    public AddManager(Catalog catalog, Console printer) {
+        this.catalog = catalog;
         this.printer = printer;
     }
 
     public void addAdd(Advertisement addManager) {
-        catalogRepository.addAddToCatalog(addManager);
+
+        catalog.addAddToCatalog(addManager);
     }
 
     public void remove(Advertisement advertisement){
@@ -22,10 +23,10 @@ public class AddManager {
 
     public void printAnAdd(int iD){
         IdAdd idAdd = new IdAdd(iD);
-        printer.printAnAdd(catalogRepository.printAnAdd(idAdd));
+        printer.print(catalog.printAnAdd(idAdd));
     }
 
     public void printListOfAdds(){
-        printer.printAnAdd(catalogRepository.printListOfAdds());
+        printer.print(catalog.printListOfAdds());
     }
 }

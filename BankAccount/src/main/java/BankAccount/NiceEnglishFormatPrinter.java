@@ -21,9 +21,10 @@ public class NiceEnglishFormatPrinter implements Printer {
     }
 
     private void printLines(List<StatementLine> reversed) {
-        reversed.stream()
-                .map(statementLine -> NiceEnglishFormat.formatLine(statementLine))
-                .forEach(line -> console.print(line));
+        for ( StatementLine statementLine : reversed ) {
+            String line = NiceEnglishFormat.formatLine(statementLine);
+            console.print(line);
+        }
     }
 
     public static class NiceEnglishFormat {
