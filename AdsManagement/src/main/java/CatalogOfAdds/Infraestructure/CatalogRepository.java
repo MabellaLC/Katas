@@ -1,6 +1,7 @@
 package CatalogOfAdds.Infraestructure;
 
 import CatalogOfAdds.Domain.Advertisement;
+import CatalogOfAdds.Domain.AdvertsList;
 import CatalogOfAdds.Domain.Exceptions.IdAddDoNotExist;
 import CatalogOfAdds.Domain.ValueObjects.IdAdd;
 
@@ -16,6 +17,7 @@ public class CatalogRepository implements Catalog{
     //void record(int amount)
     @Override
     public void addAddToCatalog(Advertisement advertisement) {
+
         advertisementList.add(advertisement);
     }
 
@@ -33,15 +35,14 @@ public class CatalogRepository implements Catalog{
     //public Statement()
     //list statementLine = new array...
     @Override
-    public String printListOfAdds() {
+    public AdvertsList printListOfAdds() {
+        List<Advertisement> transactionsStrings = new ArrayList<>();
         for (Advertisement advertisement : advertisementList) {
-            return advertisement.toString();
+            transactionsStrings.add(advertisement);
         }
-        throw new IdAddDoNotExist("list empty");
+       return new AdvertsList(transactionsStrings);
     }
 
 
-    public List<Advertisement> getAddList() {
-        return advertisementList;
-    }
+
 }
