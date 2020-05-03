@@ -4,13 +4,13 @@ import CatalogOfAdds.Domain.AddManager;
 import CatalogOfAdds.Domain.Advertisement;
 import CatalogOfAdds.Domain.Exceptions.IdAddDoNotExist;
 import CatalogOfAdds.Domain.Console;
+import CatalogOfAdds.Domain.ValueObjects.Date;
 import CatalogOfAdds.Domain.ValueObjects.IdAdd;
 import CatalogOfAdds.Infraestructure.Catalog;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static helpers.AdvertisementFactory.advertisementWith;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static helpers.AdvertisementBuilder.anAdvertisement;
 import static org.mockito.Mockito.*;
 
 public class AddManagerTest {
@@ -28,10 +28,20 @@ public class AddManagerTest {
 
     @Test
     public void add_an_advertisement_to_a_catalog() {
-        Advertisement advertisement = advertisementWith(1, "Promoción", "Batas exclusivas", "26/04/2020");
+        Advertisement advertisement = anAdvertisement()
+                .withID(1)
+                .withTitle("Promoción")
+                .withDescription("Batas exclusivas")
+                .whenDateIs(new Date("26/04/2020")).build();
+
+
         addManager.addAdd(advertisement);
 
-        verify(catalog).addAddToCatalog(advertisementWith(1, "Promoción", "Batas exclusivas", "26/04/2020"));
+        verify(catalog).addAddToCatalog(anAdvertisement()
+                .withID(1)
+                .withTitle("Promoción")
+                .withDescription("Batas exclusivas")
+                .whenDateIs(new Date("26/04/2020")).build());
     }
 
     @Test

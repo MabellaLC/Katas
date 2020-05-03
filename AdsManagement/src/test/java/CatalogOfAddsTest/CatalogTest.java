@@ -9,14 +9,11 @@ import CatalogOfAdds.Infraestructure.CatalogRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import static helpers.AdvertisementBuilder.anAdvertisement;
 import static helpers.AdvertisementFactory.advertisementWith;
 import static helpers.AdvertsListFactory.aAdvertsListContaining;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class CatalogTest {
 
@@ -32,10 +29,16 @@ public class CatalogTest {
 
     @Test
     public void generates_a_catalog_containing_all_recorded_advertisements(){
-        Advertisement addOne = advertisementWith(1,"Promoción de última moda",
-                "Batas exclusivas",
-                "20/04/2020");
-        Advertisement addTwo = advertisementWith(2, "Promoción", "Bikinis", "26/04/2020");
+        Advertisement addOne = anAdvertisement()
+                .withID(1)
+                .withTitle("Promoción de última moda")
+                .withDescription("Batas exclusivas")
+                .whenDateIs(new Date("20/04/2020")).build();
+        Advertisement addTwo =anAdvertisement()
+                .withID(2)
+                .withTitle("Promoción")
+                .withDescription("Bikinis")
+                .whenDateIs(new Date("26/04/2020")).build();
 
         AdvertsList expectedAdsList = aAdvertsListContaining(
                 addOne,

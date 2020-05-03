@@ -10,9 +10,9 @@ public class Advertisement {
     private Date date;
     private BodyAdd bodyAdd;
 
-    public Advertisement(int iD, String title, String description, String date) {
+    public Advertisement(int iD, String title, String description, Date date) {
         this.iD = new IdAdd(iD);
-        this.date = new Date(date);
+        this.date = date;
         this.bodyAdd = new BodyAdd(title,description);
     }
 
