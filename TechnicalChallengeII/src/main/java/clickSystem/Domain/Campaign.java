@@ -5,10 +5,13 @@ import clickSystem.Domain.valueObjects.StateCampaign;
 
 import java.util.Objects;
 
+import static clickSystem.Domain.valueObjects.StateCampaign.*;
+
 public class Campaign {
-    private static final double ZEROBUDGET = 0.00;
+    private static final double ZERO_BUDGET = 0.00;
     private int iDCampaign;
     private double budgetCampaign;
+
     private StateCampaign stateCampaign;
 
     public Campaign(int iDCampaign, double budgetCampaign) {
@@ -16,40 +19,45 @@ public class Campaign {
         this.budgetCampaign = Double.parseDouble(String.format("%.2f", budgetCampaign));
         this.stateCampaign = checkStatusOfCampaign();
     }
+
     private StateCampaign checkStatusOfCampaign(){
-        if (budgetCampaign == ZEROBUDGET){
-            return stateCampaign = StateCampaign.FINISHED;
+        if (budgetCampaign == ZERO_BUDGET){
+            return this.stateCampaign = StateCampaign.FINISHED;
         }
-        return pause();
+        return this.stateCampaign = StateCampaign.ACTIVATED;
     }
 
-    public StateCampaign activate() {
-        if (stateCampaign.equals(StateCampaign.FINISHED )) {
-            return stateCampaign =  StateCampaign.FINISHED;
+    public void activate() {
+        if (stateCampaign == FINISHED) {
+            return;
         }
-        return stateCampaign = StateCampaign.ACTIVATED;
+        this.stateCampaign = StateCampaign.ACTIVATED;
     }
 
-    public StateCampaign pause() {
-        return stateCampaign = StateCampaign.PAUSED;
+    public void pause() {
+        if (stateCampaign == FINISHED ) {
+            return;
+        }
+        stateCampaign = PAUSED;
     }
 
-    public Campaign chargeForClick(Click click){
-        if (stateCampaign.equals(StateCampaign.PAUSED) ){
-            return new Campaign(iDCampaign, budgetCampaign);
-        }
-        if (budgetCampaign > ZEROBUDGET ) {
+    public void chargeForClick(Click click){
+        if (budgetCampaign > ZERO_BUDGET ) {
             budgetCampaign -= click.chargeForClick();
-            if (budgetCampaign <= ZEROBUDGET ){
-                budgetCampaign = ZEROBUDGET;
-                this.stateCampaign = StateCampaign.FINISHED;
+            if (budgetCampaign <= ZERO_BUDGET ){
+                budgetCampaign = ZERO_BUDGET;
+                this.stateCampaign = FINISHED;
             }
-            return new Campaign(iDCampaign, budgetCampaign);
         }
-
-        return new Campaign(iDCampaign, budgetCampaign);
     }
 
+    public StateCampaign stateCampaign() {
+        return stateCampaign;
+    }
+
+    public void updateCampaign(){
+        new Campaign(iDCampaign, budgetCampaign);
+    }
 
     @Override
     public String toString() {
@@ -57,6 +65,7 @@ public class Campaign {
                 "BudgetCampaign: " + String.format("%.2f", budgetCampaign) + " €" + "\n" +
                 "StateCampaign: " + stateCampaign ;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -72,6 +81,4 @@ public class Campaign {
     public int hashCode() {
         return Objects.hash(iDCampaign, budgetCampaign, stateCampaign);
     }
-
-
 }

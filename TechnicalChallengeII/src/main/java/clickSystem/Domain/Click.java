@@ -2,23 +2,22 @@ package clickSystem.Domain;
 
 import clickSystem.Domain.valueObjects.IDClick;
 import clickSystem.Domain.valueObjects.IDUser;
-import clickSystem.Domain.valueObjects.InstantClick;
 import clickSystem.Domain.valueObjects.StateClick;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Click {
 
     private IDClick iDClick;
     private IDUser iDUser;
-    private InstantClick instantClick;
+    private Date instantClick;
     private StateClick stateClick;
 
-    public Click(int iDClick, int iDUser, String instantClick, String stateClick) {
-
+    public Click(int iDClick, int iDUser, Date instantClick, String stateClick) {
         this.iDClick = new IDClick(iDClick);
         this.iDUser = new IDUser(iDUser);
-        this.instantClick = new InstantClick(instantClick);
+        this.instantClick = instantClick;
         this.stateClick = StateClick.CheckStateClick(stateClick);
     }
 
@@ -29,6 +28,14 @@ public class Click {
         return Double.parseDouble(String.format("%.2f", 0.01));
     }
 
+    public boolean differenceBiggerThanFifteenSeconds(Click click) {
+        long secondsOfDiference = 0;
+        long difference = instantClick.getTime() - click.instantClick.getTime();
+        if ( difference != 0 ){
+            secondsOfDiference = difference / 1000;
+        }
+        return Math.abs(secondsOfDiference) > 15;
+    }
 
     @Override
     public String toString() {

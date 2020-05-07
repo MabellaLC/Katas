@@ -2,10 +2,12 @@ package helpers;
 
 import clickSystem.Domain.Click;
 
+import java.util.Date;
+
 public class ClickBuilder {
     private int iD;
     private int iDUser;
-    private String instantDate;
+    private Date instantDate;
     private String typeOfClick;
 
     public static ClickBuilder aClick(){
@@ -22,7 +24,7 @@ public class ClickBuilder {
         return this;
     }
 
-    public ClickBuilder at(String instantDate){
+    public ClickBuilder at(Date instantDate){
         this.instantDate = instantDate;
         return this;
     }
