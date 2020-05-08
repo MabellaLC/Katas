@@ -2,7 +2,7 @@ package clickSystem.Domain;
 
 import clickSystem.Domain.valueObjects.IDCampaign;
 import clickSystem.Domain.valueObjects.*;
-import clickSystem.controller.Commands;
+import clickSystem.service.CampaignType;
 import java.util.Objects;
 
 import static clickSystem.Domain.valueObjects.StateCampaign.*;
@@ -50,7 +50,7 @@ public class Campaign {
     }
 
     public void chargeForClick(Click click) {
-        Commands commands = typeCampaign.returnCommands(typeCampaign);
+        CampaignType commands = typeCampaign.returnCommands(typeCampaign);
         if ( budgetCampaign > ZERO_BUDGET ) {
             checkTypeOfCampaignAndChargeClick(typeCampaign, click, commands);
         }
@@ -60,7 +60,7 @@ public class Campaign {
         }
     }
 
-    private void checkTypeOfCampaignAndChargeClick(TypeCampaign typeCampaign, Click click, Commands commands) {
+    private void checkTypeOfCampaignAndChargeClick(TypeCampaign typeCampaign, Click click, CampaignType commands) {
         if ( typeCampaign.equals(PREMIUM) ) {
             budgetCampaign -= commands.chargeForClick(click);
         }
@@ -73,11 +73,11 @@ public class Campaign {
     }
 
     public void refundClickMadeByBots(Click click){
-        Commands commands = typeCampaign.returnCommands(typeCampaign);
+        CampaignType commands = typeCampaign.returnCommands(typeCampaign);
         checkTypeOfCampaignAndRefundClick(typeCampaign, click, commands);
     }
 
-    private void checkTypeOfCampaignAndRefundClick(TypeCampaign typeCampaign, Click click, Commands commands) {
+    private void checkTypeOfCampaignAndRefundClick(TypeCampaign typeCampaign, Click click, CampaignType commands) {
         if(typeCampaign.equals(STANDARD) ){
             amount = commands.chargeForClick(click);
             budgetCampaign -= amount;

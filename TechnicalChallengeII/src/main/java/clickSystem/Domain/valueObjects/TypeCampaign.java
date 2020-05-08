@@ -1,6 +1,6 @@
 package clickSystem.Domain.valueObjects;
 
-import clickSystem.controller.*;
+import clickSystem.service.*;
 
 public enum TypeCampaign {
     DEMO,
@@ -15,7 +15,7 @@ public enum TypeCampaign {
         return STANDARD;
     }
 
-    public Commands returnCommands(TypeCampaign type) {
+    public CampaignType returnCommands(TypeCampaign type) {
         if (type.equals(PREMIUM)) {
             return new PremiumCampaign();
         } else if (type.equals(STANDARD)) {

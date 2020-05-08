@@ -1,4 +1,4 @@
-package clickSystem.controller;
+package clickSystem.service;
 
 import clickSystem.Domain.Click;
 

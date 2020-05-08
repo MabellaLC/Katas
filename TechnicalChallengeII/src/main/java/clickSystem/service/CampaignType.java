@@ -1,7 +1,7 @@
-package clickSystem.controller;
+package clickSystem.service;
 
 import clickSystem.Domain.Click;
 
-public interface Commands {
+public interface CampaignType {
     double chargeForClick(Click click);
 }

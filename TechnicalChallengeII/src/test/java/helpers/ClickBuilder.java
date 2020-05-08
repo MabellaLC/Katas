@@ -4,9 +4,9 @@ import clickSystem.Domain.Click;
 import clickSystem.Domain.valueObjects.IDClick;
 import clickSystem.Domain.valueObjects.IDUser;
 import clickSystem.Domain.valueObjects.StateClick;
-import clickSystem.controller.Commands;
-import clickSystem.controller.PremiumCampaign;
-import clickSystem.controller.StandardCampaign;
+import clickSystem.service.CampaignType;
+import clickSystem.service.PremiumCampaign;
+import clickSystem.service.StandardCampaign;
 
 import java.util.Date;
 
@@ -15,7 +15,7 @@ public class ClickBuilder {
     private IDUser iDUser;
     private Date instantDate;
     private StateClick typeOfClick;
-    private Commands interpreter;
+    private CampaignType interpreter;
 
     public static ClickBuilder aClick(){
         return new ClickBuilder();
