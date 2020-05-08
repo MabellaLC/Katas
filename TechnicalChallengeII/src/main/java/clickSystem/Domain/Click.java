@@ -4,7 +4,7 @@ import clickSystem.Domain.valueObjects.*;
 import java.util.Date;
 import java.util.Objects;
 
-public class Click  {
+public class Click {
 
     private IDClick iDClick;
     private IDUser iDUser;
@@ -12,7 +12,6 @@ public class Click  {
     private StateClick stateClick;
 
     public Click(IDClick iDClick, IDUser iDUser, Date instantClick, StateClick stateClick) {
-
         this.iDClick = iDClick;
         this.iDUser = iDUser;
         this.instantClick = instantClick;
@@ -22,19 +21,23 @@ public class Click  {
     public boolean differenceBiggerThanFifteenSeconds(Click click) {
         long secondsOfDifference = 0;
         long difference = instantClick.getTime() - click.instantClick.getTime();
-        if ( difference != 0 ){
+        if ( difference != 0 ) {
             secondsOfDifference = difference / 1000;
         }
         return Math.abs(secondsOfDifference) > 15;
     }
 
+    public Date getInstantClick() {
+        return instantClick;
+    }
+
     @Override
     public String toString() {
         return "Click{" +
-                "iDClick=" + iDClick +
-                ", iDUser=" + iDUser +
-                ", instantClick=" + instantClick +
-                ", stateClick=" + stateClick +
+                "iDClick: " + iDClick +
+                ", idUser: " + iDUser +
+                ", instantClick: " + instantClick +
+                ", stateClick: " + stateClick +
                 '}';
     }
 
@@ -57,4 +60,9 @@ public class Click  {
     public StateClick stateClick() {
         return stateClick;
     }
+
+    public IDUser withIDUser() {
+        return iDUser;
+    }
 }
+

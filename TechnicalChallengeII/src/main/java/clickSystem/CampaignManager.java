@@ -4,6 +4,8 @@ import clickSystem.Domain.Campaign;
 import clickSystem.Domain.Click;
 import clickSystem.insfraestructure.ClicksRepository;
 
+import java.util.Date;
+
 public class CampaignManager {
 
     private ClicksRepository clicksInMemory;
@@ -28,6 +30,8 @@ public class CampaignManager {
         clicksInMemory.chargeClicks(campaign);
     }
 
-
+    public void findBotsFrom(Date date, Campaign campaign) {
+        clicksInMemory.compareListOfClicksWithClicksByBoots(date, campaign);
+    }
 
 }

@@ -1,31 +1,28 @@
 package clickSystem.Domain.valueObjects;
 
-import clickSystem.controller.Commands;
-import clickSystem.controller.DemoPrizeCampaign;
-import clickSystem.controller.FriendlyPrizeCampaign;
-import clickSystem.controller.StandardPrizeCampaign;
+import clickSystem.controller.*;
 
 public enum TypeCampaign {
     DEMO,
     STANDARD,
-    FRIENDLY;
+    PREMIUM;
 
     public static TypeCampaign isType(String typeOf) {
-        if ( typeOf == "friendly" )
-            return FRIENDLY;
-        if ( typeOf == "demo" )
+        if ( typeOf == ("premium") )
+            return PREMIUM;
+        if ( typeOf == ("demo") )
             return DEMO;
         return STANDARD;
     }
 
     public Commands returnCommands(TypeCampaign type) {
-        if (type.equals(FRIENDLY)) {
-            return new FriendlyPrizeCampaign();
+        if (type.equals(PREMIUM)) {
+            return new PremiumCampaign();
         } else if (type.equals(STANDARD)) {
-            return new StandardPrizeCampaign();
+            return new StandardCampaign();
         } else if (type.equals(TypeCampaign.DEMO)) {
-            return new DemoPrizeCampaign();
+            return new DemoCampaign();
         }
-        throw new UnknownError("error message");
+        throw new UnknownCampaign("Type campaign is not valid");
     }
 }

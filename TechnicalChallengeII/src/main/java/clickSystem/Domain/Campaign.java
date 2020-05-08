@@ -1,8 +1,7 @@
 package clickSystem.Domain;
 
 import clickSystem.Domain.valueObjects.IDCampaign;
-import clickSystem.Domain.valueObjects.StateCampaign;
-import clickSystem.Domain.valueObjects.TypeCampaign;
+import clickSystem.Domain.valueObjects.*;
 import clickSystem.controller.Commands;
 import java.util.Objects;
 
@@ -17,6 +16,8 @@ public class Campaign {
     private String typeOf;
     private StateCampaign stateCampaign;
     private TypeCampaign typeCampaign;
+    private InitialBudget initialBudget;
+    double amount = 0.00;
 
     public Campaign(IDCampaign iDCampaign, double budgetCampaign, String typeOf) {
         this.iDCampaign = iDCampaign;
@@ -24,6 +25,7 @@ public class Campaign {
         this.typeOf = typeOf;
         this.stateCampaign = checkStatusOfCampaign();
         this.typeCampaign = TypeCampaign.isType(typeOf);
+        this.initialBudget = new InitialBudget(budgetCampaign);
     }
 
     private StateCampaign checkStatusOfCampaign(){
@@ -50,7 +52,7 @@ public class Campaign {
     public void chargeForClick(Click click) {
         Commands commands = typeCampaign.returnCommands(typeCampaign);
         if ( budgetCampaign > ZERO_BUDGET ) {
-            checkTypeOfCampaign(typeCampaign, click, commands);
+            checkTypeOfCampaignAndChargeClick(typeCampaign, click, commands);
         }
         if ( budgetCampaign <= ZERO_BUDGET ) {
             budgetCampaign = ZERO_BUDGET;
@@ -58,8 +60,8 @@ public class Campaign {
         }
     }
 
-    private void checkTypeOfCampaign(TypeCampaign typeCampaign, Click click, Commands commands) {
-        if ( typeCampaign.equals(FRIENDLY) ) {
+    private void checkTypeOfCampaignAndChargeClick(TypeCampaign typeCampaign, Click click, Commands commands) {
+        if ( typeCampaign.equals(PREMIUM) ) {
             budgetCampaign -= commands.chargeForClick(click);
         }
         if(typeCampaign.equals(STANDARD) ){
@@ -67,6 +69,33 @@ public class Campaign {
         }
         if( typeCampaign.equals(DEMO) ) {
             budgetCampaign -= commands.chargeForClick(click);
+        }
+    }
+
+    public void refundClickMadeByBots(Click click){
+        Commands commands = typeCampaign.returnCommands(typeCampaign);
+        checkTypeOfCampaignAndRefundClick(typeCampaign, click, commands);
+    }
+
+    private void checkTypeOfCampaignAndRefundClick(TypeCampaign typeCampaign, Click click, Commands commands) {
+        if(typeCampaign.equals(STANDARD) ){
+            amount = commands.chargeForClick(click);
+            budgetCampaign -= amount;
+        }
+        if( typeCampaign.equals(DEMO) ) {
+            budgetCampaign += commands.chargeForClick(click);
+        }
+        if (typeCampaign.equals(PREMIUM) ) {
+            amount += commands.chargeForClick(click);
+            checkAmountOfTotalBotsClick();
+        }
+    }
+
+    private void checkAmountOfTotalBotsClick() {
+        if ( amount > initialBudget.calculateFivePercentOfInitialBudget()){
+            budgetCampaign -= amount;
+        }else {
+            budgetCampaign = initialBudget.initial();
         }
     }
 

@@ -3,7 +3,7 @@ package clickSystem.controller;
 import clickSystem.Domain.Click;
 import clickSystem.Domain.valueObjects.StateClick;
 
-public class StandardPrizeCampaign implements Commands{
+public class StandardCampaign implements Commands{
     @Override
     public double chargeForClick(Click click) {
         if ( click.stateClick().equals(StateClick.PREMIUM) ) {

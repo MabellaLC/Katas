@@ -1,9 +1,7 @@
 package unitTest;
 
 import clickSystem.Domain.Click;
-import clickSystem.Domain.valueObjects.IDClick;
-import clickSystem.Domain.valueObjects.IDUser;
-import clickSystem.Domain.valueObjects.StateClick;
+import clickSystem.Domain.valueObjects.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -49,7 +47,7 @@ public class ClickShould {
     }
 
     @Test
-    public void incorrect_time_between_clicks() throws ParseException {
+    public void have_an_incorrect_time_between_clicks() throws ParseException {
 
         firstDate = dateFormat.parse("07/05/2020 09:26:15");
         secondDate = dateFormat.parse("07/05/2020 09:27:15");

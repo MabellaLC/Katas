@@ -3,14 +3,9 @@ package acceptanceTest;
 import clickSystem.Domain.Campaign;
 import clickSystem.CampaignManager;
 import clickSystem.Domain.Click;
-import clickSystem.Domain.valueObjects.IDCampaign;
-import clickSystem.Domain.valueObjects.IDClick;
-import clickSystem.Domain.valueObjects.IDUser;
-import clickSystem.Domain.valueObjects.StateClick;
+import clickSystem.Domain.valueObjects.*;
 import clickSystem.insfraestructure.ClicksInMemory;
 import clickSystem.insfraestructure.ClicksRepository;
-import clickSystem.controller.Commands;
-import clickSystem.controller.FriendlyPrizeCampaign;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static helpers.CampaignBuilder.aCampaign;
 import static helpers.ClickBuilder.aClick;
 
-public class AcceptanceTest {
+public class ClickSystemShould {
     ClicksRepository clicksRepository;
     CampaignManager campaignManager;
     SimpleDateFormat dateFormat;
@@ -70,7 +65,7 @@ public class AcceptanceTest {
     }
 
     @Test
-    public void charge_duplicated_clicks() throws ParseException {
+    public void no_charge_clicks_when_user_is_the_same_until_fifteen_seconds_after_of_the_click_before() throws ParseException {
         campaignManager = new CampaignManager(clicksRepository);
         Campaign campaign = aCampaign().withID(new IDCampaign(1)).withBudget(0.20).build();
 
@@ -90,9 +85,9 @@ public class AcceptanceTest {
     }
 
     @Test
-    public void charge_clicks_when_are_Friendly_campaign() throws ParseException {
+    public void charge_clicks_as_a_Friendly_campaign() throws ParseException {
         campaignManager = new CampaignManager(clicksRepository);
-        Campaign campaign = aCampaign().withID(new IDCampaign(1)).withBudget(0.20).typeOf("friendly").build();
+        Campaign campaign = aCampaign().withID(new IDCampaign(1)).withBudget(0.20).typeOf("premium").build();
 
         campaignManager.activate(campaign);
         Click click = aClick().withID(new IDClick(1)).withIDUser(new IDUser(1)).at(dateFormat.parse("07/05/2020 09:16:15")).isType(StateClick.PREMIUM).build();
@@ -106,6 +101,43 @@ public class AcceptanceTest {
 
         assertEquals("iDCampaign: 1" + "\n" +
                 "BudgetCampaign: 0.16" + " €" + "\n" +
+                "StateCampaign: ACTIVATED", campaign.toString());
+    }
+
+    @Test
+    public void find_boots_as_a_user_and_refund_click_when_campaign_is_standard() throws ParseException {
+        campaignManager = new CampaignManager(clicksRepository);
+        Campaign campaign = aCampaign().withID(new IDCampaign(1)).withBudget(0.20).typeOf("standard").build();
+
+        Click click = aClick().withID(new IDClick(1)).withIDUser(new IDUser(1)).at(dateFormat.parse("07/05/2020 09:16:15")).isType(StateClick.PREMIUM).build();
+        Click click2 = aClick().withID(new IDClick(2)).withIDUser(new IDUser(15)).at(dateFormat.parse("07/05/2020 09:16:55")).isType(StateClick.PREMIUM).build();
+        campaignManager.addClickToAList(click, campaign);
+        campaignManager.addClickToAList(click2, campaign);
+
+
+        campaignManager.findBotsFrom(dateFormat.parse("07/05/2020 09:15:15"), campaign);
+
+
+        assertEquals("iDCampaign: 1" + "\n" +
+                "BudgetCampaign: 0.15" + " €" + "\n" +
+                "StateCampaign: ACTIVATED", campaign.toString());
+    }
+
+    @Test
+    public void find_boots_as_a_user_and_refund_click_when_campaign_is_premium() throws ParseException {
+        campaignManager = new CampaignManager(clicksRepository);
+        Campaign campaign = aCampaign().withID(new IDCampaign(1)).withBudget(0.20).typeOf("premium").build();
+
+        Click click = aClick().withID(new IDClick(1)).withIDUser(new IDUser(1)).at(dateFormat.parse("07/05/2020 09:16:15")).isType(StateClick.PREMIUM).build();
+        Click click2 = aClick().withID(new IDClick(2)).withIDUser(new IDUser(15)).at(dateFormat.parse("07/05/2020 09:16:55")).isType(StateClick.PREMIUM).build();
+        campaignManager.addClickToAList(click, campaign);
+        campaignManager.addClickToAList(click2, campaign);
+
+        campaignManager.findBotsFrom(dateFormat.parse("07/05/2020 09:16:15"), campaign);
+
+
+        assertEquals("iDCampaign: 1" + "\n" +
+                "BudgetCampaign: 0.18" + " €" + "\n" +
                 "StateCampaign: ACTIVATED", campaign.toString());
     }
 }

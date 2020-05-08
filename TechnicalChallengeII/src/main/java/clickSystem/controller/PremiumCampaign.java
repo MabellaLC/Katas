@@ -3,7 +3,7 @@ package clickSystem.controller;
 import clickSystem.Domain.Click;
 import clickSystem.Domain.valueObjects.StateClick;
 
-public class FriendlyPrizeCampaign implements Commands {
+public class PremiumCampaign implements Commands {
 
     @Override
     public double chargeForClick(Click click) {

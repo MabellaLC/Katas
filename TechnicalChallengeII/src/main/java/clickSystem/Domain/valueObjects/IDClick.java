@@ -21,4 +21,9 @@ public class IDClick {
     public int hashCode() {
         return Objects.hash(iDClick);
     }
+
+    @Override
+    public String toString() {
+        return "" + iDClick ;
+    }
 }

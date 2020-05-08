@@ -5,8 +5,8 @@ import clickSystem.Domain.valueObjects.IDClick;
 import clickSystem.Domain.valueObjects.IDUser;
 import clickSystem.Domain.valueObjects.StateClick;
 import clickSystem.controller.Commands;
-import clickSystem.controller.FriendlyPrizeCampaign;
-import clickSystem.controller.StandardPrizeCampaign;
+import clickSystem.controller.PremiumCampaign;
+import clickSystem.controller.StandardCampaign;
 
 import java.util.Date;
 
@@ -42,11 +42,11 @@ public class ClickBuilder {
     }
 
     public ClickBuilder prizeFriendly(){
-        this.interpreter = new FriendlyPrizeCampaign();
+        this.interpreter = new PremiumCampaign();
         return this;
     }
     public ClickBuilder prizeStandard(){
-        this.interpreter = new StandardPrizeCampaign();
+        this.interpreter = new StandardCampaign();
         return this;
     }
 

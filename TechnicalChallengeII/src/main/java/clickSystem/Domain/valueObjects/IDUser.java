@@ -6,8 +6,12 @@ public class IDUser {
     private int iDUser;
 
     public IDUser(int iDUser) {
-
         this.iDUser = iDUser;
+    }
+
+    @Override
+    public String toString() {
+        return "" + iDUser;
     }
 
     @Override
