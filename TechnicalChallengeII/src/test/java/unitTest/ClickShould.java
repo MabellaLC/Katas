@@ -1,6 +1,9 @@
 package unitTest;
 
 import clickSystem.Domain.Click;
+import clickSystem.Domain.valueObjects.IDClick;
+import clickSystem.Domain.valueObjects.IDUser;
+import clickSystem.Domain.valueObjects.StateClick;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,27 +30,10 @@ public class ClickShould {
     public void create_a_click() throws ParseException {
         firstDate = dateFormat.parse("07/05/2020 09:26:15");
 
-        Click click = aClick().withID(10).withIDUser(10).at(firstDate).isType("Standard").build();
-        Click expectedClick = aClick().withID(10).withIDUser(10).at(firstDate).isType("Standard").build();
+        Click click = aClick().withID(new IDClick(10)).withIDUser(new IDUser(10)).at(firstDate).isType(StateClick.STANDARD).build();
+        Click expectedClick = aClick().withID(new IDClick(10)).withIDUser(new IDUser(10)).at(firstDate).isType(StateClick.STANDARD).build();
 
         assertEquals(expectedClick, click);
-    }
-
-    @Test
-    public void charge_five_cents_if_click_is_premium() throws ParseException {
-        firstDate = dateFormat.parse("07/05/2020 09:26:15");
-        Click click = aClick().withID(10).withIDUser(10).at(firstDate).isType("Premium").build();
-
-        assertEquals(0.05, click.chargeForClick());
-    }
-
-    @Test
-    public void charge_five_cents_if_click_is_standard() throws ParseException {
-        firstDate = dateFormat.parse("07/05/2020 09:26:15");
-
-        Click click = aClick().withID(10).withIDUser(10).at(firstDate).isType("Standard").build();
-
-        assertEquals(0.01, click.chargeForClick());
     }
 
     @Test
@@ -56,11 +42,20 @@ public class ClickShould {
         firstDate = dateFormat.parse("07/05/2020 09:26:15");
         secondDate = dateFormat.parse("07/05/2020 09:26:15");
 
-        Click click = aClick().withID(1).withIDUser(10).at(firstDate).isType("Standard").build();
-        Click click2 = aClick().withID(2).withIDUser(10).at(secondDate).isType("Standard").build();
+        Click click = aClick().withID(new IDClick(1)).withIDUser(new IDUser(10)).at(firstDate).isType(StateClick.STANDARD).build();
+        Click click2 = aClick().withID(new IDClick(2)).withIDUser(new IDUser(10)).at(secondDate).isType(StateClick.STANDARD).build();
 
         assertEquals(false, click.differenceBiggerThanFifteenSeconds(click2));
     }
 
+    @Test
+    public void incorrect_time_between_clicks() throws ParseException {
 
-}
+        firstDate = dateFormat.parse("07/05/2020 09:26:15");
+        secondDate = dateFormat.parse("07/05/2020 09:27:15");
+
+        Click click = aClick().withID(new IDClick(1)).withIDUser(new IDUser(10)).at(firstDate).isType(StateClick.STANDARD).build();
+        Click click2 = aClick().withID(new IDClick(2)).withIDUser(new IDUser(10)).at(secondDate).isType(StateClick.STANDARD).build();
+
+        assertEquals(true, click.differenceBiggerThanFifteenSeconds(click2));
+    }}

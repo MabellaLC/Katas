@@ -6,7 +6,6 @@ import clickSystem.insfraestructure.ClicksRepository;
 
 public class CampaignManager {
 
-
     private ClicksRepository clicksInMemory;
 
     public CampaignManager(ClicksRepository clicksInMemory) {
@@ -23,16 +22,12 @@ public class CampaignManager {
 
     public void addClickToAList(Click click, Campaign campaign) {
         clicksInMemory.addClicks(click, campaign);
-        /*for ( Click clickActual : clicksInMemory.getList() ){
-            campaign.chargeForClick(clickActual);
-        }*/
-        //clicksInMemory.compareClicks(campaign.chargeForClick(click));
-       // campaign.chargeForClick(clicksInMemory.compareClicks());
-
     }
 
     public void chargeClicks(Campaign campaign) {
-
         clicksInMemory.chargeClicks(campaign);
     }
+
+
+
 }

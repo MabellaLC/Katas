@@ -31,7 +31,7 @@ public class ClicksInMemory implements ClicksRepository {
 
     @Override
     public void chargeClicks(Campaign campaign) {
-        for (Click clickActual : clicksList ){
+        for ( Click clickActual : clicksList ){
             campaign.chargeForClick(clickActual);
         }
         campaign.updateCampaign();

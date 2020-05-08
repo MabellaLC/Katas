@@ -1,40 +1,31 @@
 package clickSystem.Domain;
 
-import clickSystem.Domain.valueObjects.IDClick;
-import clickSystem.Domain.valueObjects.IDUser;
-import clickSystem.Domain.valueObjects.StateClick;
-
+import clickSystem.Domain.valueObjects.*;
 import java.util.Date;
 import java.util.Objects;
 
-public class Click {
+public class Click  {
 
     private IDClick iDClick;
     private IDUser iDUser;
     private Date instantClick;
     private StateClick stateClick;
 
-    public Click(int iDClick, int iDUser, Date instantClick, String stateClick) {
-        this.iDClick = new IDClick(iDClick);
-        this.iDUser = new IDUser(iDUser);
-        this.instantClick = instantClick;
-        this.stateClick = StateClick.CheckStateClick(stateClick);
-    }
+    public Click(IDClick iDClick, IDUser iDUser, Date instantClick, StateClick stateClick) {
 
-    public double chargeForClick() {
-        if ( stateClick.equals(StateClick.PREMIUM) ) {
-            return Double.parseDouble(String.format("%.2f", 0.05));
-        }
-        return Double.parseDouble(String.format("%.2f", 0.01));
+        this.iDClick = iDClick;
+        this.iDUser = iDUser;
+        this.instantClick = instantClick;
+        this.stateClick = stateClick;
     }
 
     public boolean differenceBiggerThanFifteenSeconds(Click click) {
-        long secondsOfDiference = 0;
+        long secondsOfDifference = 0;
         long difference = instantClick.getTime() - click.instantClick.getTime();
         if ( difference != 0 ){
-            secondsOfDiference = difference / 1000;
+            secondsOfDifference = difference / 1000;
         }
-        return Math.abs(secondsOfDiference) > 15;
+        return Math.abs(secondsOfDifference) > 15;
     }
 
     @Override
@@ -61,5 +52,9 @@ public class Click {
     @Override
     public int hashCode() {
         return Objects.hash(iDClick, iDUser, instantClick, stateClick);
+    }
+
+    public StateClick stateClick() {
+        return stateClick;
     }
 }

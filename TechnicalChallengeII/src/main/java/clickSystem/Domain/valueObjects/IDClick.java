@@ -6,7 +6,6 @@ public class IDClick {
     private int iDClick;
 
     public IDClick(int iDClick) {
-
         this.iDClick = iDClick;
     }
 

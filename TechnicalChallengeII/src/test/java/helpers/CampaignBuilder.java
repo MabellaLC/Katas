@@ -1,16 +1,19 @@
 package helpers;
 
 import clickSystem.Domain.Campaign;
+import clickSystem.Domain.valueObjects.IDCampaign;
 
 public class CampaignBuilder {
-    private int iD;
+
     private double budget;
+    private String typeOf;
+    private IDCampaign iD;
 
     public static CampaignBuilder aCampaign(){
         return new CampaignBuilder();
     }
 
-    public CampaignBuilder withID(int iD){
+    public CampaignBuilder withID(IDCampaign iD){
         this.iD = iD;
         return this;
     }
@@ -20,7 +23,12 @@ public class CampaignBuilder {
         return this;
     }
 
+    public CampaignBuilder typeOf(String typeOf){
+        this.typeOf = typeOf;
+        return this;
+    }
+
     public Campaign build(){
-        return new Campaign(iD, budget);
+        return new Campaign(iD, budget, typeOf);
     }
 }

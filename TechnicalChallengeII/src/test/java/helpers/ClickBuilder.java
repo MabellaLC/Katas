@@ -1,25 +1,32 @@
 package helpers;
 
 import clickSystem.Domain.Click;
+import clickSystem.Domain.valueObjects.IDClick;
+import clickSystem.Domain.valueObjects.IDUser;
+import clickSystem.Domain.valueObjects.StateClick;
+import clickSystem.controller.Commands;
+import clickSystem.controller.FriendlyPrizeCampaign;
+import clickSystem.controller.StandardPrizeCampaign;
 
 import java.util.Date;
 
 public class ClickBuilder {
-    private int iD;
-    private int iDUser;
+    private IDClick iD;
+    private IDUser iDUser;
     private Date instantDate;
-    private String typeOfClick;
+    private StateClick typeOfClick;
+    private Commands interpreter;
 
     public static ClickBuilder aClick(){
         return new ClickBuilder();
     }
 
-    public ClickBuilder withID(int iD){
+    public ClickBuilder withID(IDClick iD){
         this.iD = iD;
         return this;
     }
 
-    public ClickBuilder withIDUser(int iDUser){
+    public ClickBuilder withIDUser(IDUser iDUser){
         this.iDUser = iDUser;
         return this;
     }
@@ -29,12 +36,25 @@ public class ClickBuilder {
         return this;
     }
 
-    public ClickBuilder isType(String typeOfClick){
+    public ClickBuilder isType(StateClick typeOfClick){
         this.typeOfClick = typeOfClick;
+        return this;
+    }
+
+    public ClickBuilder prizeFriendly(){
+        this.interpreter = new FriendlyPrizeCampaign();
+        return this;
+    }
+    public ClickBuilder prizeStandard(){
+        this.interpreter = new StandardPrizeCampaign();
         return this;
     }
 
     public Click build(){
         return new Click(iD, iDUser, instantDate, typeOfClick);
     }
+
+    /*public ClickNew builder(){
+        return new ClickNew(new Click(iD, iDUser, instantDate, typeOfClick), interpreter);
+    }*/
 }
